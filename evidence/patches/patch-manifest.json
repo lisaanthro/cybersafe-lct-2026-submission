@@ -1,0 +1,102 @@
+{
+  "source": "/Users/ilinivan/cybersafe-report/evidence/flash-read-repeat.bin",
+  "source_sha256": "640626b93d7492a6efadba09759cf349d84a45b785cd31703ad37912d6cf9eb9",
+  "note": "UF2 contains every 256-byte page of each touched 4 KiB sector",
+  "patches": [
+    {
+      "name": "bypass-compare",
+      "edits": [
+        {
+          "offset": "0xc8c",
+          "xip_address": "0x10000c8c",
+          "original": "22 d1",
+          "replacement": "00 bf"
+        }
+      ],
+      "full_image": "/Users/ilinivan/cybersafe-report/evidence/patches/bypass-compare.bin",
+      "full_image_sha256": "6b1adae222929803fb7c2629dac4a52651d390fcffdeaf4b8363460e3c97d5da",
+      "uf2": "/Users/ilinivan/cybersafe-report/evidence/patches/bypass-compare.uf2",
+      "uf2_sha256": "a13254bfb00e6c1d0efeb3eb7c2093d84464b923a4cf614b145914eaee75da14",
+      "uf2_size": 8192,
+      "touched_sectors": [
+        "0x0"
+      ],
+      "hardware_tested": false
+    },
+    {
+      "name": "skip-password-call",
+      "edits": [
+        {
+          "offset": "0x8a6",
+          "xip_address": "0x100008a6",
+          "original": "00 f0 03 f9",
+          "replacement": "00 bf 00 bf"
+        }
+      ],
+      "full_image": "/Users/ilinivan/cybersafe-report/evidence/patches/skip-password-call.bin",
+      "full_image_sha256": "96427914e691d9895102ce9c69c1cefbf092683ef50db5047a28a1f6bedc65c6",
+      "uf2": "/Users/ilinivan/cybersafe-report/evidence/patches/skip-password-call.uf2",
+      "uf2_sha256": "d98bd6719c775d925ec04810bf68de2e91d7ac60eb772797e51960afc6473ff4",
+      "uf2_size": 8192,
+      "touched_sectors": [
+        "0x0"
+      ],
+      "hardware_tested": false
+    },
+    {
+      "name": "pin-0000",
+      "edits": [
+        {
+          "offset": "0x5500",
+          "xip_address": "0x10005500",
+          "original": "08 01 07 00",
+          "replacement": "00 00 00 00"
+        }
+      ],
+      "full_image": "/Users/ilinivan/cybersafe-report/evidence/patches/pin-0000.bin",
+      "full_image_sha256": "6e4246a30fbe73da38c3a754311478855a8356b263a46551ba30b4019389656f",
+      "uf2": "/Users/ilinivan/cybersafe-report/evidence/patches/pin-0000.uf2",
+      "uf2_sha256": "1e99c65d33c733d51f566f1f5947c1a6526b19abe6d7b92e965f6cf2e691370a",
+      "uf2_size": 8192,
+      "touched_sectors": [
+        "0x5000"
+      ],
+      "hardware_tested": true,
+      "hardware_evidence": "evidence/live-pin-0000-20260927/result.json"
+    },
+    {
+      "name": "return-from-password",
+      "edits": [
+        {
+          "offset": "0xab0",
+          "xip_address": "0x10000ab0",
+          "original": "f0 b5",
+          "replacement": "70 47"
+        }
+      ],
+      "full_image": "/Users/ilinivan/cybersafe-report/evidence/patches/return-from-password.bin",
+      "full_image_sha256": "4c2db011d8033ceb1718b07e2568931731453c6554e4932fd76cfe96d811b056",
+      "uf2": "/Users/ilinivan/cybersafe-report/evidence/patches/return-from-password.uf2",
+      "uf2_sha256": "f42cd8c8faa26c3d7c343348d9e0cd7126fd2f2b46de1b846770bd1e241296ad",
+      "uf2_size": 8192,
+      "touched_sectors": [
+        "0x0"
+      ],
+      "hardware_tested": false
+    }
+  ],
+  "restore": [
+    {
+      "sector": "0x0",
+      "file": "/Users/ilinivan/cybersafe-report/evidence/patches/restore-sector-000000.uf2",
+      "sha256": "f75ef6dcf905ad81b504b83663eb8188ed28b6519d355eefa464e34f5bc1e2ea",
+      "size": 8192
+    },
+    {
+      "sector": "0x5000",
+      "file": "/Users/ilinivan/cybersafe-report/evidence/patches/restore-sector-005000.uf2",
+      "sha256": "590c5b29a9517af9ff2a0fb00c459e86049a9b6701fd911ab0ab2450d3909d75",
+      "size": 8192
+    }
+  ]
+}

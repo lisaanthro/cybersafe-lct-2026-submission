@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-27",
+  "method": "M12 partial live check",
+  "test_plan": {
+    "wrong_pin": "0000",
+    "instructed_wrong_attempts": 10,
+    "final_correct_pin": "8170"
+  },
+  "result": {
+    "application_usb_after_sequence": true,
+    "usb_vid_pid": "cafe:4000",
+    "usb_product": "RP2040 Flash MSC",
+    "usb_manufacturer": "PositiveLabs",
+    "usb_session_before_reset": 4491236823759,
+    "usb_session_after_sequence": 4494145627720,
+    "new_usb_session_observed": true
+  },
+  "evidence_limit": "The host proves a new USB session after the instructed sequence. Individual encoder presses and the exact count of rejected attempts were not electrically logged.",
+  "full_0000_to_9999_sweep_completed": false,
+  "zip_opened": false,
+  "zip_copied": false,
+  "zip_extracted": false
+}

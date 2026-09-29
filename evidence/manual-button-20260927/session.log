@@ -1,0 +1,262 @@
+CyberSafe read-only reproduction
+UTC: 2026-09-27T11:43:34Z
+PIN was not entered. Flash writes: none.
+ZIP contents are not opened or extracted.
+
+$ system_profiler SPUSBDataType
+USB:
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+        RP2 Boot:
+
+          Product ID: 0x0003
+          Vendor ID: 0x2e8a
+          Version: 1.00
+          Serial Number: E0C9125B0D9B
+          Speed: Up to 12 Mb/s
+          Manufacturer: Raspberry Pi
+          Location ID: 0x01100000 / 1
+          Current Available (mA): 500
+          Current Required (mA): 500
+          Extra Operating Current (mA): 0
+          Media:
+            RP2:
+              Capacity: 134,2 MB (134 217 728 bytes)
+              Removable Media: Yes
+              BSD Name: disk6
+              Logical Unit: 0
+              Partition Map Type: MBR (Master Boot Record)
+              S.M.A.R.T. status: Verified
+              USB Interface: 0
+              Volumes:
+                RPI-RP2:
+                  Capacity: 134,2 MB (134 217 216 bytes)
+                  File System: MS-DOS FAT16
+                  BSD Name: disk6s1
+                  Content: Windows_FAT_16
+                  Volume UUID: 6395E93C-5F57-3B29-AC90-E67C35020AFD
+
+
+$ python3 /Users/ilinivan/cybersafe-report/tools/read_picoboot.py evidence/manual-bootsel-read-20260927-ok/flash.bin --size 0x200000 --verify
+PICOBOOT interface=1 IN=0x84 OUT=0x3
+{
+  "time_utc": "2026-09-27T11:43:42.972783+00:00",
+  "usb_vid_pid": "2e8a:0003",
+  "address": "0x10000000",
+  "size_bytes": 2097152,
+  "sha256": "183ec770b9581e5add2a85dc7d0fa82377bb5d92f7e525281c09250906acc4ca",
+  "two_reads_identical": true,
+  "pin_entered": false,
+  "flash_written": false,
+  "path": "/Users/ilinivan/cybersafe-report/evidence/manual-bootsel-read-20260927-ok/flash.bin"
+}
+
+$ python3 /Users/ilinivan/cybersafe-report/tools/read_picoboot.py evidence/manual-bootsel-read-20260927-ok/pin.bin --address 0x10005500 --size 4 --verify
+PICOBOOT interface=1 IN=0x84 OUT=0x3
+{
+  "time_utc": "2026-09-27T11:43:43.054777+00:00",
+  "usb_vid_pid": "2e8a:0003",
+  "address": "0x10005500",
+  "size_bytes": 4,
+  "sha256": "080fe7399f197fc37d89d01ffbbb17f04f7f2ba3dd84baab2b5f09b3fc54a140",
+  "two_reads_identical": true,
+  "pin_entered": false,
+  "flash_written": false,
+  "path": "/Users/ilinivan/cybersafe-report/evidence/manual-bootsel-read-20260927-ok/pin.bin"
+}
+
+$ xxd -g 1 evidence/manual-bootsel-read-20260927-ok/pin.bin
+00000000: 08 01 07 00                                      ....
+
+$ python3 /Users/ilinivan/cybersafe-report/tools/read_picoboot.py evidence/manual-bootsel-read-20260927-ok/disk-region.bin --address 0x10100000 --size 0x100000 --verify
+PICOBOOT interface=1 IN=0x84 OUT=0x3
+{
+  "time_utc": "2026-09-27T11:43:47.045860+00:00",
+  "usb_vid_pid": "2e8a:0003",
+  "address": "0x10100000",
+  "size_bytes": 1048576,
+  "sha256": "a8e537b29d87c960eac967df56e15e0474e850f6ed34fcdf92e09022b382f87f",
+  "two_reads_identical": true,
+  "pin_entered": false,
+  "flash_written": false,
+  "path": "/Users/ilinivan/cybersafe-report/evidence/manual-bootsel-read-20260927-ok/disk-region.bin"
+}
+
+$ python3 /Users/ilinivan/cybersafe-report/tools/decode_disk_region.py evidence/manual-bootsel-read-20260927-ok/disk-region.bin evidence/manual-bootsel-read-20260927-ok/disk.img
+{
+  "input": "/Users/ilinivan/cybersafe-report/evidence/manual-bootsel-read-20260927-ok/disk-region.bin",
+  "input_sha256": "a8e537b29d87c960eac967df56e15e0474e850f6ed34fcdf92e09022b382f87f",
+  "source_address": "0x10100000",
+  "size_bytes": 1048576,
+  "output": "/Users/ilinivan/cybersafe-report/evidence/manual-bootsel-read-20260927-ok/disk.img",
+  "output_sha256": "ca31ed53d0d408e66119b5835dcfada0e40c828b974160800e44c328cd2892b6",
+  "boot_signature_hex": "55aa"
+}
+
+$ python3 /Users/ilinivan/cybersafe-report/tools/inspect_fat_root.py evidence/manual-bootsel-read-20260927-ok/disk.img --json evidence/manual-bootsel-read-20260927-ok/fat-root.json
+{
+  "image": "/Users/ilinivan/cybersafe-report/evidence/manual-bootsel-read-20260927-ok/disk.img",
+  "oem": "MSDOS5.0",
+  "filesystem_label": "FAT12   ",
+  "boot_signature_hex": "55aa",
+  "bytes_per_sector": 512,
+  "sectors_per_cluster": 1,
+  "fat_count": 2,
+  "total_sectors": 2048,
+  "root_offset": "0x2000",
+  "root_entries": [
+    {
+      "short_name": "SYSTEM~1",
+      "attributes": "0x16",
+      "first_cluster": 2,
+      "size_bytes": 0
+    },
+    {
+      "short_name": "YOUR_P~1.ZIP",
+      "attributes": "0x20",
+      "first_cluster": 5,
+      "size_bytes": 691868
+    },
+    {
+      "short_name": "FSEVEN~6",
+      "attributes": "0x10",
+      "first_cluster": 1357,
+      "size_bytes": 0
+    }
+  ],
+  "file_contents_read": false
+}
+
+$ fsck_msdos -n evidence/manual-bootsel-read-20260927-ok/disk.img
+** evidence/manual-bootsel-read-20260927-ok/disk.img
+** Phase 1 - Preparing FAT
+** Phase 2 - Checking Directories
+** Phase 3 - Checking for Orphan Clusters
+Warning: 6 files, 321 KiB free (643 clusters)
+
+$ python3 /Users/ilinivan/cybersafe-report/tools/analyze_firmware.py evidence/manual-bootsel-read-20260927-ok/flash.bin --json evidence/manual-bootsel-read-20260927-ok/firmware-analysis.json
+{
+  "flash": "/Users/ilinivan/cybersafe-report/evidence/manual-bootsel-read-20260927-ok/flash.bin",
+  "size_bytes": 2097152,
+  "sha256": "183ec770b9581e5add2a85dc7d0fa82377bb5d92f7e525281c09250906acc4ca",
+  "device_strings": {
+    "POSILABS": "0x533c",
+    "PositiveLabs": "0x5358",
+    "RP2040 Flash MSC": "0x5368",
+    "Flash Disk": "0x5384",
+    "usb_token": "0x541c",
+    "Mar 11 2026": "0x5428"
+  },
+  "pin": {
+    "flash_offset": "0x5500",
+    "xip_address": "0x10005500",
+    "raw_hex": "08 01 07 00",
+    "digits": [
+      8,
+      1,
+      7,
+      0
+    ],
+    "rendered": "8170"
+  },
+  "comparison": {
+    "loop_offset": "0xc82",
+    "compare_offset": "0xc8a",
+    "conditional_branch_offset": "0xc8c",
+    "conditional_branch_raw": "22 d1",
+    "decoded": "BNE",
+    "failure_target": "0xcd4",
+    "success_offset": "0xc9a",
+    "delay_instruction_offset": "0xc8e",
+    "delay_instruction_raw": "32 20",
+    "delay_ms_after_each_matching_digit": 50,
+    "success_flag_address": "0x20002ed2"
+  },
+  "main_flow": {
+    "password_function_offset": "0xab0",
+    "call_to_password_function_offset": "0x8a6",
+    "usb_initialization_continues_at": "0x8aa"
+  },
+  "gpio": {
+    "encoder_phase_a": 29,
+    "encoder_phase_b": 27,
+    "encoder_button": 28,
+    "code_leds": [
+      13,
+      12,
+      11,
+      10
+    ],
+    "digit_ring_leds": [
+      7,
+      6,
+      5,
+      4,
+      3,
+      2,
+      1,
+      0,
+      9,
+      8
+    ]
+  },
+  "disk_transform": {
+    "function_offset": "0x354",
+    "flash_offset": "0x100000",
+    "xip_address": "0x10100000",
+    "sector_step": "0x38c9cda0",
+    "initial_state": "0x9e37a9ea",
+    "block_step": "0x41c64e6d",
+    "golden_ratio": "0x9e3779b1",
+    "uses_pin_or_unique_chip_id": false
+  },
+  "patch_points": [
+    {
+      "name": "ignore_wrong_digit",
+      "offset": "0xc8c",
+      "original": "22 d1",
+      "replacement": "00 bf",
+      "replacement_instruction": "NOP"
+    },
+    {
+      "name": "skip_password_call",
+      "offset": "0x8a6",
+      "original": "00 f0 03 f9",
+      "replacement": "00 bf 00 bf",
+      "replacement_instruction": "NOP; NOP"
+    },
+    {
+      "name": "password_0000",
+      "offset": "0x5500",
+      "original": "08 01 07 00",
+      "replacement": "00 00 00 00",
+      "replacement_instruction": "data"
+    },
+    {
+      "name": "return_from_password_function",
+      "offset": "0xab0",
+      "original": "f0 b5",
+      "replacement": "70 47",
+      "replacement_instruction": "BX LR"
+    }
+  ]
+}
+
+$ shasum -a 256 evidence/manual-bootsel-read-20260927-ok/flash.bin evidence/manual-bootsel-read-20260927-ok/pin.bin evidence/manual-bootsel-read-20260927-ok/disk-region.bin evidence/manual-bootsel-read-20260927-ok/disk.img
+183ec770b9581e5add2a85dc7d0fa82377bb5d92f7e525281c09250906acc4ca  evidence/manual-bootsel-read-20260927-ok/flash.bin
+080fe7399f197fc37d89d01ffbbb17f04f7f2ba3dd84baab2b5f09b3fc54a140  evidence/manual-bootsel-read-20260927-ok/pin.bin
+a8e537b29d87c960eac967df56e15e0474e850f6ed34fcdf92e09022b382f87f  evidence/manual-bootsel-read-20260927-ok/disk-region.bin
+ca31ed53d0d408e66119b5835dcfada0e40c828b974160800e44c328cd2892b6  evidence/manual-bootsel-read-20260927-ok/disk.img
+
+Result directory: evidence/manual-bootsel-read-20260927-ok

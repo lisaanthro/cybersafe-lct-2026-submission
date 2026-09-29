@@ -1,0 +1,35 @@
+    +-o RP2040 Flash MSC@01100000  <class IOUSBHostDevice, id 0x1000324bc, registered, matched, active, busy 0 (164 ms), retain 28>
+        {
+          "sessionID" = 4494145627720
+          "USBSpeed" = 1
+          "idProduct" = 16384
+          "iManufacturer" = 1
+          "bDeviceClass" = 239
+          "IOPowerManagement" = {"PowerOverrideOn"=Yes,"CapabilityFlags"=32768,"MaxPowerState"=2,"DevicePowerState"=2,"DriverPowerState"=0,"ChildrenPowerState"=2,"CurrentPowerState"=2}
+          "bcdDevice" = 256
+          "bMaxPacketSize0" = 64
+          "iProduct" = 2
+          "iSerialNumber" = 3
+          "bNumConfigurations" = 1
+          "UsbDeviceSignature" = <feca00400001313233343536ef0201080650>
+          "USB Product Name" = "RP2040 Flash MSC"
+          "locationID" = 17825792
+          "bDeviceSubClass" = 2
+          "bcdUSB" = 512
+          "kUSBSerialNumberString" = "123456"
+          "USB Address" = 1
+          "IOCFPlugInTypes" = {"9dc7b780-9ec0-11d4-a54f-000a27052861"="IOUSBHostFamily.kext/Contents/PlugIns/IOUSBLib.bundle"}
+          "kUSBCurrentConfiguration" = 1
+          "bDeviceProtocol" = 1
+          "USBPortType" = 0
+          "IOServiceDEXTEntitlements" = (("com.apple.developer.driverkit.transport.usb"))
+          "USB Vendor Name" = "PositiveLabs"
+          "Device Speed" = 1
+          "idVendor" = 51966
+          "kUSBProductString" = "RP2040 Flash MSC"
+          "USB Serial Number" = "123456"
+          "IOGeneralInterest" = "IOCommand is not serializable"
+          "kUSBAddress" = 1
+          "kUSBVendorString" = "PositiveLabs"
+        }
+        

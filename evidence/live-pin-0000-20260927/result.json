@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-27",
+  "method": "M20",
+  "change": {
+    "flash_offset": "0x5500",
+    "original_pin_bytes": "08 01 07 00",
+    "patched_pin_bytes": "00 00 00 00",
+    "patch_uf2_sha256": "1e99c65d33c733d51f566f1f5947c1a6526b19abe6d7b92e965f6cf2e691370a"
+  },
+  "live_result": {
+    "pin_entered": "0000",
+    "usb_seen": true,
+    "usb_vid_pid": "cafe:4000",
+    "usb_product": "RP2040 Flash MSC",
+    "usb_manufacturer": "PositiveLabs",
+    "volume_seen": "NO NAME"
+  },
+  "restore": {
+    "restore_uf2_sha256": "590c5b29a9517af9ff2a0fb00c459e86049a9b6701fd911ab0ab2450d3909d75",
+    "copied_successfully": true,
+    "original_pin_8170_checked_by_operator": true,
+    "later_normal_usb_seen": true
+  },
+  "zip_opened": false,
+  "zip_copied": false,
+  "zip_extracted": false
+}

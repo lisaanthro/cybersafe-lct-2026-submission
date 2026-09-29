@@ -1,0 +1,57 @@
+{
+  "case": "CyberSafe, ЛЦТ 2026, Positive Technologies",
+  "device": {
+    "mcu": "RP2040",
+    "bootsel_vid_pid": "2e8a:0003",
+    "application_vid_pid": "cafe:4000",
+    "usb_manufacturer": "PositiveLabs",
+    "bootsel_serial": "E0C9125B0D9B"
+  },
+  "scope": {
+    "zip_opened": false,
+    "zip_copied": false,
+    "zip_extracted": false
+  },
+  "results": {
+    "pin": "8170",
+    "flash_bytes": 2097152,
+    "flash_sha256": "640626b93d7492a6efadba09759cf349d84a45b785cd31703ad37912d6cf9eb9",
+    "encoded_disk_bytes": 1048576,
+    "encoded_disk_sha256": "5b07fe65994a80d2bf4cc67fd7d031ff49bfda003ae50f24a3eb41c35e57d053",
+    "decoded_disk_sha256": "6df635a0ddfd0f1b5c8c243382cc23dd366c63393fd18a20baaf73d5372e2c4b",
+    "decoded_filesystem": "FAT12",
+    "normal_unlock_verified": true,
+    "picoboot_ram_exec_verified": true,
+    "ciphertext_malleability_verified_offline": true,
+    "pin_0000_live_patch_verified": true,
+    "pin_8170_restored_after_patch": true,
+    "ten_wrong_attempts_without_lockout_checked": true,
+    "full_10000_pin_sweep_completed": false,
+    "timing_delay_present_in_machine_code": true,
+    "timing_camera_240fps_tested": true,
+    "timing_camera_240fps_usable": false
+  },
+  "catalog": {
+    "method_variants_total": 42,
+    "root_vulnerability_groups": 12,
+    "A_live_board": ["M01", "M02", "M03", "M06", "M15", "M20", "M33"],
+    "B_dump_static_or_ready_artifact": ["M05", "M07", "M08", "M09", "M10", "M17", "M18", "M19"],
+    "C_requires_more_equipment_or_build": ["M04", "M12", "M13", "M14", "M16", "M21", "M22", "M23", "M24", "M25", "M26", "M27", "M28", "M29", "M30", "M31", "M32", "M34", "M35", "M36", "M37", "M38", "M39", "M41", "M42"],
+    "N_negative": ["M11", "M40"],
+    "partial_live_evidence": {
+      "M12": "Ten instructed wrong attempts followed by successful PIN 8170; individual button presses were not electrically counted."
+    },
+    "root_attack_vectors": 12,
+    "conservative_confirmed_vulnerability_classes": [
+      "unauthenticated ROM flash read",
+      "plaintext PIN storage",
+      "fixed XOR without device key or integrity",
+      "unsigned firmware update"
+    ],
+    "partially_confirmed_classes": [
+      "no PIN attempt lockout",
+      "pre-auth SRAM code execution without completed storage dumper"
+    ],
+    "proof_matrix": "evidence/proof-matrix.json"
+  }
+}

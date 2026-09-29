@@ -1,0 +1,14 @@
+{
+  "time_utc": "2026-09-27T10:17:23.573595+00:00",
+  "usb_vid_pid": "2e8a:0003",
+  "code_address": "0x20020000",
+  "marker_address": "0x20020100",
+  "payload_hex": "01 48 02 49 01 60 70 47 00 01 02 20 de c0 de c0",
+  "payload_sha256": "147e086310dbe711e7209d33b52cab1dc5d1c93f54431bd28a4df18240c33db3",
+  "marker_after_exec": "0xc0dec0de",
+  "pc_write_worked": true,
+  "pc_exec_worked": true,
+  "payload_returned_to_usb_bootloader": true,
+  "original_ram_restored_and_verified": true,
+  "flash_written": false
+}

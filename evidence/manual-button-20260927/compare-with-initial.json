@@ -1,0 +1,30 @@
+{
+  "size": 2097152,
+  "different_bytes": 522,
+  "first_difference": "0x100ff5",
+  "last_difference": "0x1afbff",
+  "different_sector_count": 4,
+  "different_sector_ranges": [
+    [
+      "0x100e00",
+      "0x100fff"
+    ],
+    [
+      "0x101a00",
+      "0x101bff"
+    ],
+    [
+      "0x1af600",
+      "0x1af7ff"
+    ],
+    [
+      "0x1afa00",
+      "0x1afbff"
+    ]
+  ],
+  "firmware_first_1MiB_identical": true,
+  "old_first_1MiB_sha256": "84ffbf3599ed712b4fad1162d1b978d3ea657e10698e3f631a1b55e2b26b16a4",
+  "new_first_1MiB_sha256": "84ffbf3599ed712b4fad1162d1b978d3ea657e10698e3f631a1b55e2b26b16a4",
+  "pin_bytes_identical": true,
+  "pin_hex": "08 01 07 00"
+}

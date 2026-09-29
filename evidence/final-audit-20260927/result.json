@@ -1,0 +1,21 @@
+{
+  "captured_utc": "2026-09-27T13:29:22Z",
+  "purpose": "final non-invasive device health snapshot after the live experiments",
+  "current_usb": {
+    "present": true,
+    "vid_pid": "cafe:4000",
+    "product": "RP2040 Flash MSC",
+    "manufacturer": "PositiveLabs",
+    "serial": "123456",
+    "session_id": 4494145627720
+  },
+  "current_mount": {
+    "volume_no_name_present": false,
+    "note": "The application USB device was present, but the volume was not mounted at this final snapshot. Earlier live logs record the NO NAME mount."
+  },
+  "interpretation": "The board was still alive and running the application USB stack at the end of the audit. This snapshot alone does not prove which PIN started the existing USB session; the separate final-device-state.txt records a full power cycle followed by PIN 8170.",
+  "flash_write_performed_during_snapshot": false,
+  "zip_opened": false,
+  "zip_copied": false,
+  "zip_extracted": false
+}

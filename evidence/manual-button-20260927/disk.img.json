@@ -1,0 +1,9 @@
+{
+  "input": "/Users/ilinivan/cybersafe-report/evidence/manual-bootsel-read-20260927-ok/disk-region.bin",
+  "input_sha256": "a8e537b29d87c960eac967df56e15e0474e850f6ed34fcdf92e09022b382f87f",
+  "source_address": "0x10100000",
+  "size_bytes": 1048576,
+  "output": "/Users/ilinivan/cybersafe-report/evidence/manual-bootsel-read-20260927-ok/disk.img",
+  "output_sha256": "ca31ed53d0d408e66119b5835dcfada0e40c828b974160800e44c328cd2892b6",
+  "boot_signature_hex": "55aa"
+}

@@ -1,0 +1,106 @@
+{
+  "flash": "/Users/ilinivan/cybersafe-report/evidence/manual-bootsel-read-20260927-ok/flash.bin",
+  "size_bytes": 2097152,
+  "sha256": "183ec770b9581e5add2a85dc7d0fa82377bb5d92f7e525281c09250906acc4ca",
+  "device_strings": {
+    "POSILABS": "0x533c",
+    "PositiveLabs": "0x5358",
+    "RP2040 Flash MSC": "0x5368",
+    "Flash Disk": "0x5384",
+    "usb_token": "0x541c",
+    "Mar 11 2026": "0x5428"
+  },
+  "pin": {
+    "flash_offset": "0x5500",
+    "xip_address": "0x10005500",
+    "raw_hex": "08 01 07 00",
+    "digits": [
+      8,
+      1,
+      7,
+      0
+    ],
+    "rendered": "8170"
+  },
+  "comparison": {
+    "loop_offset": "0xc82",
+    "compare_offset": "0xc8a",
+    "conditional_branch_offset": "0xc8c",
+    "conditional_branch_raw": "22 d1",
+    "decoded": "BNE",
+    "failure_target": "0xcd4",
+    "success_offset": "0xc9a",
+    "delay_instruction_offset": "0xc8e",
+    "delay_instruction_raw": "32 20",
+    "delay_ms_after_each_matching_digit": 50,
+    "success_flag_address": "0x20002ed2"
+  },
+  "main_flow": {
+    "password_function_offset": "0xab0",
+    "call_to_password_function_offset": "0x8a6",
+    "usb_initialization_continues_at": "0x8aa"
+  },
+  "gpio": {
+    "encoder_phase_a": 29,
+    "encoder_phase_b": 27,
+    "encoder_button": 28,
+    "code_leds": [
+      13,
+      12,
+      11,
+      10
+    ],
+    "digit_ring_leds": [
+      7,
+      6,
+      5,
+      4,
+      3,
+      2,
+      1,
+      0,
+      9,
+      8
+    ]
+  },
+  "disk_transform": {
+    "function_offset": "0x354",
+    "flash_offset": "0x100000",
+    "xip_address": "0x10100000",
+    "sector_step": "0x38c9cda0",
+    "initial_state": "0x9e37a9ea",
+    "block_step": "0x41c64e6d",
+    "golden_ratio": "0x9e3779b1",
+    "uses_pin_or_unique_chip_id": false
+  },
+  "patch_points": [
+    {
+      "name": "ignore_wrong_digit",
+      "offset": "0xc8c",
+      "original": "22 d1",
+      "replacement": "00 bf",
+      "replacement_instruction": "NOP"
+    },
+    {
+      "name": "skip_password_call",
+      "offset": "0x8a6",
+      "original": "00 f0 03 f9",
+      "replacement": "00 bf 00 bf",
+      "replacement_instruction": "NOP; NOP"
+    },
+    {
+      "name": "password_0000",
+      "offset": "0x5500",
+      "original": "08 01 07 00",
+      "replacement": "00 00 00 00",
+      "replacement_instruction": "data"
+    },
+    {
+      "name": "return_from_password_function",
+      "offset": "0xab0",
+      "original": "f0 b5",
+      "replacement": "70 47",
+      "replacement_instruction": "BX LR"
+    }
+  ]
+}

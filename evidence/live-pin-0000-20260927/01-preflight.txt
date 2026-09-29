@@ -1,0 +1,4 @@
+2026-09-27 15:45:27 MSK
+Prepared patch pin-0000.uf2
+1e99c65d33c733d51f566f1f5947c1a6526b19abe6d7b92e965f6cf2e691370a  evidence/patches/pin-0000.uf2
+590c5b29a9517af9ff2a0fb00c459e86049a9b6701fd911ab0ab2450d3909d75  evidence/patches/restore-sector-005000.uf2

@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-27",
+  "method": "M11 visual timing oracle",
+  "camera_fps": 240,
+  "machine_code_observation": {
+    "early_exit_compare": true,
+    "delay_after_matching_digit_ms": 50,
+    "evidence": "CMP at 0xc8a, BNE at 0xc8c, MOVS r0,#50 at 0xc8e, sleep_ms call at 0xc92"
+  },
+  "live_observation": {
+    "tested": true,
+    "visible_sequence": "blue followed immediately by red",
+    "stable_gap_seen": false,
+    "prefix_timing_difference_usable": false,
+    "raw_video_in_package": false
+  },
+  "status": "negative for 240 FPS visual method",
+  "conclusion": "Do not count the camera experiment as a working attack. Electrical timing measurements remain untested hypotheses."
+}

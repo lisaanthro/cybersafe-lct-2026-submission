@@ -1,0 +1,153 @@
+2026-09-27 14:41:28 | volumes: Archi 5.10.0 Macintosh HD NO NAME 
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+2026-09-27 14:41:30 | volumes: Archi 5.10.0 Macintosh HD NO NAME 
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+2026-09-27 14:41:32 | volumes: Archi 5.10.0 Macintosh HD NO NAME 
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+2026-09-27 14:41:34 | volumes: Archi 5.10.0 Macintosh HD NO NAME 
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+2026-09-27 14:41:36 | volumes: Archi 5.10.0 Macintosh HD NO NAME 
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+2026-09-27 14:41:39 | volumes: Archi 5.10.0 Macintosh HD NO NAME 
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+2026-09-27 14:41:41 | volumes: Archi 5.10.0 Macintosh HD NO NAME 
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+2026-09-27 14:41:43 | volumes: Archi 5.10.0 Macintosh HD NO NAME 
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+2026-09-27 14:41:45 | volumes: Archi 5.10.0 Macintosh HD NO NAME 
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+2026-09-27 14:41:47 | volumes: Archi 5.10.0 Macintosh HD NO NAME 
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+2026-09-27 14:41:49 | volumes: Archi 5.10.0 Macintosh HD NO NAME 
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+2026-09-27 14:41:51 | volumes: Archi 5.10.0 Macintosh HD NO NAME 
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+2026-09-27 14:41:53 | volumes: Archi 5.10.0 Macintosh HD NO NAME 
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+2026-09-27 14:41:55 | volumes: Archi 5.10.0 Macintosh HD NO NAME 
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+2026-09-27 14:41:58 | volumes: Archi 5.10.0 Macintosh HD NO NAME 
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+2026-09-27 14:42:00 | volumes: Archi 5.10.0 Macintosh HD NO NAME 
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+2026-09-27 14:42:02 | volumes: Archi 5.10.0 Macintosh HD 
+        RP2 Boot:
+
+          Product ID: 0x0003
+          Vendor ID: 0x2e8a
+          Version: 1.00
+          Serial Number: E0C9125B0D9B
+          Manufacturer: Raspberry Pi
+          Location ID: 0x01100000

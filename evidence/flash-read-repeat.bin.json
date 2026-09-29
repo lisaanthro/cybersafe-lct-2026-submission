@@ -1,0 +1,11 @@
+{
+  "time_utc": "2026-09-27T10:07:21.026865+00:00",
+  "usb_vid_pid": "2e8a:0003",
+  "address": "0x10000000",
+  "size_bytes": 2097152,
+  "sha256": "640626b93d7492a6efadba09759cf349d84a45b785cd31703ad37912d6cf9eb9",
+  "two_reads_identical": true,
+  "pin_entered": false,
+  "flash_written": false,
+  "path": "/Users/ilinivan/cybersafe-report/evidence/flash-read-repeat.bin"
+}

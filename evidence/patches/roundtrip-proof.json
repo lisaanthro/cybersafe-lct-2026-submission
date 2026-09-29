@@ -1,0 +1,94 @@
+{
+  "source_sha256": "640626b93d7492a6efadba09759cf349d84a45b785cd31703ad37912d6cf9eb9",
+  "patches": [
+    {
+      "name": "bypass-compare",
+      "hardware_tested": false,
+      "changed_byte_offsets": [
+        "0xc8c",
+        "0xc8d"
+      ],
+      "changed_byte_count": 2,
+      "no_other_full_image_bytes_changed": true,
+      "uf2_sha256": "a13254bfb00e6c1d0efeb3eb7c2093d84464b923a4cf614b145914eaee75da14",
+      "sector_checks": [
+        {
+          "sector": "0x0",
+          "uf2_reconstructs_patched_sector": true,
+          "sector_sha256": "a9501ee11dec645c2d16f50f1af8933158d5338109c037ce8f058b5e0cc270e3"
+        }
+      ]
+    },
+    {
+      "name": "skip-password-call",
+      "hardware_tested": false,
+      "changed_byte_offsets": [
+        "0x8a7",
+        "0x8a8",
+        "0x8a9"
+      ],
+      "changed_byte_count": 3,
+      "no_other_full_image_bytes_changed": true,
+      "uf2_sha256": "d98bd6719c775d925ec04810bf68de2e91d7ac60eb772797e51960afc6473ff4",
+      "sector_checks": [
+        {
+          "sector": "0x0",
+          "uf2_reconstructs_patched_sector": true,
+          "sector_sha256": "16264a5b88c903c1c95755881a3088ea752476809ea705222471eceb16a34a60"
+        }
+      ]
+    },
+    {
+      "name": "pin-0000",
+      "hardware_tested": true,
+      "changed_byte_offsets": [
+        "0x5500",
+        "0x5501",
+        "0x5502"
+      ],
+      "changed_byte_count": 3,
+      "no_other_full_image_bytes_changed": true,
+      "uf2_sha256": "1e99c65d33c733d51f566f1f5947c1a6526b19abe6d7b92e965f6cf2e691370a",
+      "sector_checks": [
+        {
+          "sector": "0x5000",
+          "uf2_reconstructs_patched_sector": true,
+          "sector_sha256": "163d4107c9587c9481a7aaf8d2e32788d4109148d10fbcc73278b1a69c1d90df"
+        }
+      ]
+    },
+    {
+      "name": "return-from-password",
+      "hardware_tested": false,
+      "changed_byte_offsets": [
+        "0xab0",
+        "0xab1"
+      ],
+      "changed_byte_count": 2,
+      "no_other_full_image_bytes_changed": true,
+      "uf2_sha256": "f42cd8c8faa26c3d7c343348d9e0cd7126fd2f2b46de1b846770bd1e241296ad",
+      "sector_checks": [
+        {
+          "sector": "0x0",
+          "uf2_reconstructs_patched_sector": true,
+          "sector_sha256": "ac436eb7ca6b1abfb8c7ef7d830d52b3b0fea1ec38194a05e23b6b7b5c34ed31"
+        }
+      ]
+    }
+  ],
+  "restore_sectors": [
+    {
+      "sector": "0x0",
+      "uf2_sha256": "f75ef6dcf905ad81b504b83663eb8188ed28b6519d355eefa464e34f5bc1e2ea",
+      "reconstructs_original_sector": true,
+      "original_sector_sha256": "31324343b484c09f15fd9a150bef2cb7e177e8a43abfdb545c71a9c036260ddf"
+    },
+    {
+      "sector": "0x5000",
+      "uf2_sha256": "590c5b29a9517af9ff2a0fb00c459e86049a9b6701fd911ab0ab2450d3909d75",
+      "reconstructs_original_sector": true,
+      "original_sector_sha256": "210293cf6c8edb578c154a408728d12b3fd14a27544c33f5b0c03688f7b31903"
+    }
+  ],
+  "all_checks_passed": true
+}

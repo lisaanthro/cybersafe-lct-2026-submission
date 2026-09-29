@@ -1,0 +1,24 @@
+2026-09-27 16:29:22.061 system_profiler[80296:4467441] SPUSBDevice: IOCreatePlugInInterfaceForService failed 0xe00002be
+USB:
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+

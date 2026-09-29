@@ -1,0 +1,10 @@
+{
+  "file": "/Users/ilinivan/cybersafe-report/evidence/patches/bypass-compare.uf2",
+  "sha256": "a13254bfb00e6c1d0efeb3eb7c2093d84464b923a4cf614b145914eaee75da14",
+  "valid": true,
+  "block_count": 16,
+  "first_address": "0x10000000",
+  "last_address_exclusive": "0x10001000",
+  "family_id": "0xe48bff56",
+  "payload_bytes": 4096
+}

@@ -1,0 +1,31 @@
+UTC 2026-09-27T12:55:48Z
+Observed RP2040 ROM BOOTSEL for restore
+USB:
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+        RP2 Boot:
+
+          Product ID: 0x0003
+          Vendor ID: 0x2e8a
+          Version: 1.00
+          Serial Number: E0C9125B0D9B
+          Manufacturer: Raspberry Pi
+          Location ID: 0x01100000
+
+Mounted volumes:
+total 0
+drwxr-xr-x   4 root      wheel  128 Sep 27 15:55 .
+drwxr-xr-x  20 root      wheel  640 Oct 14  2023 ..
+drwxr-xr-x   5 ilinivan  staff  160 Sep  3 15:48 Archi 5.10.0
+lrwxr-xr-x   1 root      wheel    1 Sep 22 13:51 Macintosh HD -> /

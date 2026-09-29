@@ -1,0 +1,5 @@
+UTC 2026-09-27T12:56:09Z
+590c5b29a9517af9ff2a0fb00c459e86049a9b6701fd911ab0ab2450d3909d75  evidence/patches/restore-sector-005000.uf2
+cp exit_code=0
+destination=/Volumes/RPI-RP2/restore-sector-005000.uf2
+result=restore UF2 copied; boot volume disconnected automatically

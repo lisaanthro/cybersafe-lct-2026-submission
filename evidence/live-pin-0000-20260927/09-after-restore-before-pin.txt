@@ -1,0 +1,14 @@
+USB:
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+

@@ -1,0 +1,31 @@
+UTC 2026-09-27T12:55:06Z
+USB:
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+
+Mounted volumes:
+total 32
+drwxr-xr-x   5 root      wheel    160 Sep 27 15:54 .
+drwxr-xr-x  20 root      wheel    640 Oct 14  2023 ..
+drwxr-xr-x   5 ilinivan  staff    160 Sep  3 15:48 Archi 5.10.0
+lrwxr-xr-x   1 root      wheel      1 Sep 22 13:51 Macintosh HD -> /
+drwx------   1 ilinivan  staff  16384 Jan  1  1980 NO NAME

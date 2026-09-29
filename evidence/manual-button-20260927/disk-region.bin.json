@@ -1,0 +1,11 @@
+{
+  "time_utc": "2026-09-27T11:43:47.045860+00:00",
+  "usb_vid_pid": "2e8a:0003",
+  "address": "0x10100000",
+  "size_bytes": 1048576,
+  "sha256": "a8e537b29d87c960eac967df56e15e0474e850f6ed34fcdf92e09022b382f87f",
+  "two_reads_identical": true,
+  "pin_entered": false,
+  "flash_written": false,
+  "path": "/Users/ilinivan/cybersafe-report/evidence/manual-bootsel-read-20260927-ok/disk-region.bin"
+}

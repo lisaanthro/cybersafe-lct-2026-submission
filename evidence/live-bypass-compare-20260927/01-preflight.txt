@@ -1,0 +1,34 @@
+UTC 2026-09-27T12:57:34Z
+Baseline after M20 restore and operator verification
+USB:
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+
+Mounted volumes:
+total 32
+drwxr-xr-x   5 root      wheel    160 Sep 27 15:56 .
+drwxr-xr-x  20 root      wheel    640 Oct 14  2023 ..
+drwxr-xr-x   5 ilinivan  staff    160 Sep  3 15:48 Archi 5.10.0
+lrwxr-xr-x   1 root      wheel      1 Sep 22 13:51 Macintosh HD -> /
+drwx------   1 ilinivan  staff  16384 Jan  1  1980 NO NAME
+a13254bfb00e6c1d0efeb3eb7c2093d84464b923a4cf614b145914eaee75da14  evidence/patches/bypass-compare.uf2
+f75ef6dcf905ad81b504b83663eb8188ed28b6519d355eefa464e34f5bc1e2ea  evidence/patches/restore-sector-000000.uf2

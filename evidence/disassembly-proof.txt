@@ -1,0 +1,123 @@
+==============================================================================
+PIN bytes and GPIO tables
+$ xxd -g 1 -s 0x5500 -l 32 /Users/ilinivan/cybersafe-report/evidence/reproduction-final/flash.bin
+00005500: 08 01 07 00 0d 0c 0b 0a 07 06 05 04 03 02 01 00  ................
+00005510: 09 08 00 00 1c 55 00 10 04 ff 00 00 21 63 23 12  .....U......!c#.
+
+==============================================================================
+Original PIN comparison and 50 ms delay
+$ objdump -d --start-address=0xc82 --stop-address=0xc9c /Users/ilinivan/cybersafe-research/firmware.o
+
+/Users/ilinivan/cybersafe-research/firmware.o:	file format elf32-littlearm
+
+Disassembly of section .text:
+
+00000000 <firmware_start>:
+     c82: ab0c         	add	r3, sp, #48
+     c84: 3303         	adds	r3, #3
+     c86: 5d1a         	ldrb	r2, [r3, r4]
+     c88: 5d2b         	ldrb	r3, [r5, r4]
+     c8a: 429a         	cmp	r2, r3
+     c8c: d122         	bne	0xcd4 <firmware_start+0xcd4> @ imm = #68
+     c8e: 2032         	movs	r0, #50
+     c90: 3401         	adds	r4, #1
+     c92: f001 fb83    	bl	0x239c <firmware_start+0x239c> @ imm = #5894
+     c96: 2c05         	cmp	r4, #5
+     c98: d1f3         	bne	0xc82 <firmware_start+0xc82> @ imm = #-26
+     c9a: 2200         	movs	r2, #0
+
+==============================================================================
+Patched comparison: BNE replaced by NOP
+$ objdump -d --start-address=0xc82 --stop-address=0xc9c /Users/ilinivan/cybersafe-report/evidence/patches/bypass-compare.o
+
+/Users/ilinivan/cybersafe-report/evidence/patches/bypass-compare.o:	file format elf32-littlearm
+
+Disassembly of section .text:
+
+00000000 <firmware_start>:
+     c82: ab0c         	add	r3, sp, #48
+     c84: 3303         	adds	r3, #3
+     c86: 5d1a         	ldrb	r2, [r3, r4]
+     c88: 5d2b         	ldrb	r3, [r5, r4]
+     c8a: 429a         	cmp	r2, r3
+     c8c: bf00         	nop
+     c8e: 2032         	movs	r0, #50
+     c90: 3401         	adds	r4, #1
+     c92: f001 fb83    	bl	0x239c <firmware_start+0x239c> @ imm = #5894
+     c96: 2c05         	cmp	r4, #5
+     c98: d1f3         	bne	0xc82 <firmware_start+0xc82> @ imm = #-26
+     c9a: 2200         	movs	r2, #0
+
+==============================================================================
+Original call of password gate
+$ objdump -d --start-address=0x89c --stop-address=0x8b2 /Users/ilinivan/cybersafe-research/firmware.o
+
+/Users/ilinivan/cybersafe-research/firmware.o:	file format elf32-littlearm
+
+Disassembly of section .text:
+
+00000000 <firmware_start>:
+     89c: b510         	push	{r4, lr}
+     89e: f004 fc1f    	bl	0x50e0 <firmware_start+0x50e0> @ imm = #18494
+     8a2: f002 fbdb    	bl	0x305c <firmware_start+0x305c> @ imm = #10166
+     8a6: f000 f903    	bl	0xab0 <firmware_start+0xab0> @ imm = #518
+     8aa: 2100         	movs	r1, #0
+     8ac: 2000         	movs	r0, #0
+     8ae: f004 fad9    	bl	0x4e64 <firmware_start+0x4e64> @ imm = #17842
+
+==============================================================================
+Patched call: BL replaced by two NOPs
+$ objdump -d --start-address=0x89c --stop-address=0x8b2 /Users/ilinivan/cybersafe-report/evidence/patches/skip-password-call.o
+
+/Users/ilinivan/cybersafe-report/evidence/patches/skip-password-call.o:	file format elf32-littlearm
+
+Disassembly of section .text:
+
+00000000 <firmware_start>:
+     89c: b510         	push	{r4, lr}
+     89e: f004 fc1f    	bl	0x50e0 <firmware_start+0x50e0> @ imm = #18494
+     8a2: f002 fbdb    	bl	0x305c <firmware_start+0x305c> @ imm = #10166
+     8a6: bf00         	nop
+     8a8: bf00         	nop
+     8aa: 2100         	movs	r1, #0
+     8ac: 2000         	movs	r0, #0
+     8ae: f004 fad9    	bl	0x4e64 <firmware_start+0x4e64> @ imm = #17842
+
+==============================================================================
+Patched password function: immediate return
+$ objdump -d --start-address=0xab0 --stop-address=0xabe /Users/ilinivan/cybersafe-report/evidence/patches/return-from-password.o
+
+/Users/ilinivan/cybersafe-report/evidence/patches/return-from-password.o:	file format elf32-littlearm
+
+Disassembly of section .text:
+
+00000000 <firmware_start>:
+     ab0: 4770         	bx	lr
+     ab2: 46de         	mov	lr, r11
+     ab4: 4657         	mov	r7, r10
+     ab6: 464e         	mov	r6, r9
+     ab8: 4645         	mov	r5, r8
+     aba: b5e0         	push	{r5, r6, r7, lr}
+     abc: 201d         	movs	r0, #29
+
+==============================================================================
+Encoded bytes at flash offset 0x100000
+$ xxd -g 1 -s 0x100000 -l 64 /Users/ilinivan/cybersafe-report/evidence/reproduction-final/flash.bin
+00100000: eb a2 ac 97 2b 53 fa 00 c4 a1 1e cc 68 09 a3 45  ....+S......h..E
+00100010: 43 df 7c 1c b2 a0 f1 95 32 d1 6e 0e ac 4a e8 87  C.|.....2.n..J..
+00100020: 83 21 bf 5e 7c 9a 11 2a de 6b e5 01 a1 ac 64 89  .!.^|..*.k....d.
+00100030: 88 26 21 bf 1e fc 3c 59 e3 64 c1 b1 0f ee 5f c3  .&!...<Y.d...._.
+
+==============================================================================
+Decoded FAT12 boot sector
+$ xxd -g 1 -s 0 -l 64 /Users/ilinivan/cybersafe-report/evidence/reproduction-final/disk.img
+00000000: eb 3c 90 4d 53 44 4f 53 35 2e 30 00 02 01 04 00  .<.MSDOS5.0.....
+00000010: 02 00 02 00 08 f8 06 00 01 00 01 00 00 00 00 00  ................
+00000020: 00 00 00 00 80 00 29 fd ab 78 54 4e 4f 20 4e 41  ......)..xTNO NA
+00000030: 4d 45 20 20 20 20 46 41 54 31 32 20 20 20 33 c9  ME    FAT12   3.
+
+==============================================================================
+Decoded FAT boot signature 55 aa
+$ xxd -g 1 -s 0x1f0 -l 16 /Users/ilinivan/cybersafe-report/evidence/reproduction-final/disk.img
+000001f0: 72 74 0d 0a 00 00 00 00 00 00 00 ac cb d8 55 aa  rt............U.
+

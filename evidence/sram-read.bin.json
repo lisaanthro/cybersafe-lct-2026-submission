@@ -1,0 +1,11 @@
+{
+  "time_utc": "2026-09-27T10:08:55.244468+00:00",
+  "usb_vid_pid": "2e8a:0003",
+  "address": "0x20000000",
+  "size_bytes": 270336,
+  "sha256": "9f90ada3e201a521cd7b4109ec02f8241153f22cadf5ed6735589b2651271c1b",
+  "two_reads_identical": true,
+  "pin_entered": false,
+  "flash_written": false,
+  "path": "/Users/ilinivan/cybersafe-report/evidence/sram-read.bin"
+}

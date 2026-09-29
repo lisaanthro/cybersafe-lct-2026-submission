@@ -1,0 +1,24 @@
+{
+  "encoded_region_sha256": "5b07fe65994a80d2bf4cc67fd7d031ff49bfda003ae50f24a3eb41c35e57d053",
+  "decoded_image_sha256": "6df635a0ddfd0f1b5c8c243382cc23dd366c63393fd18a20baaf73d5372e2c4b",
+  "reencode_matches_original_ciphertext": true,
+  "first_32_keystream_bytes": "00 9e 3c da 78 17 b5 53 f1 8f 2e cc 6a 08 a7 45 41 df 7e 1c ba 58 f7 95 33 d1 6f 0e ac 4a e8 87",
+  "known_plaintext_demo": {
+    "known_plaintext_first_32_hex": "eb 3c 90 4d 53 44 4f 53 35 2e 30 00 02 01 04 00 02 00 02 00 08 f8 06 00 01 00 01 00 00 00 00 00",
+    "recovered_keystream_first_32_hex": "00 9e 3c da 78 17 b5 53 f1 8f 2e cc 6a 08 a7 45 41 df 7e 1c ba 58 f7 95 33 d1 6f 0e ac 4a e8 87",
+    "ciphertext_xor_recovered_keystream_matches_32_known_bytes": true,
+    "limitation": "This recovers only positions whose plaintext is known. Full-image decoding uses the transform constants recovered from firmware."
+  },
+  "full_sector_decode_with_firmware_transform_matches": true,
+  "controlled_change": {
+    "location": "FAT boot-sector volume label, byte offsets 43..53",
+    "old_ascii": "NO NAME    ",
+    "new_ascii": "HACKATHON  ",
+    "formula": "C_new = C_old XOR P_old XOR P_new",
+    "keystream_generator_used_for_modification": false,
+    "modified_cipher_sector": "/Users/ilinivan/cybersafe-report/evidence/transform/sector0-label-modified-cipher.bin",
+    "modified_cipher_sha256": "b73f2a9b5eb5e52a2134b8cacad8f30b6ae708cd323b425c9ebe13baf4e6bae8",
+    "decode_gives_requested_label": true,
+    "device_flash_modified": false
+  }
+}

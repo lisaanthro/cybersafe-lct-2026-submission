@@ -1,0 +1,11 @@
+{
+  "time_utc": "2026-09-27T10:18:39.258176+00:00",
+  "usb_vid_pid": "2e8a:0003",
+  "address": "0x20020200",
+  "size_bytes": 512,
+  "sha256": "7c46d68a8010ae2cb70c1b3644660278409d17fefc480a7a47dbe35e2d43e8ad",
+  "two_reads_identical": true,
+  "pin_entered": false,
+  "flash_written": false,
+  "path": "/Users/ilinivan/cybersafe-report/evidence/ram-sector-debug.bin"
+}

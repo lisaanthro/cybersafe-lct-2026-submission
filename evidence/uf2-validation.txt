@@ -1,0 +1,78 @@
+==============================================================================
+$ python3 /Users/ilinivan/cybersafe-report/tools/check_uf2.py /Users/ilinivan/cybersafe-report/evidence/patches/bypass-compare.uf2
+{
+  "file": "/Users/ilinivan/cybersafe-report/evidence/patches/bypass-compare.uf2",
+  "sha256": "a13254bfb00e6c1d0efeb3eb7c2093d84464b923a4cf614b145914eaee75da14",
+  "valid": true,
+  "block_count": 16,
+  "first_address": "0x10000000",
+  "last_address_exclusive": "0x10001000",
+  "family_id": "0xe48bff56",
+  "payload_bytes": 4096
+}
+
+==============================================================================
+$ python3 /Users/ilinivan/cybersafe-report/tools/check_uf2.py /Users/ilinivan/cybersafe-report/evidence/patches/skip-password-call.uf2
+{
+  "file": "/Users/ilinivan/cybersafe-report/evidence/patches/skip-password-call.uf2",
+  "sha256": "d98bd6719c775d925ec04810bf68de2e91d7ac60eb772797e51960afc6473ff4",
+  "valid": true,
+  "block_count": 16,
+  "first_address": "0x10000000",
+  "last_address_exclusive": "0x10001000",
+  "family_id": "0xe48bff56",
+  "payload_bytes": 4096
+}
+
+==============================================================================
+$ python3 /Users/ilinivan/cybersafe-report/tools/check_uf2.py /Users/ilinivan/cybersafe-report/evidence/patches/pin-0000.uf2
+{
+  "file": "/Users/ilinivan/cybersafe-report/evidence/patches/pin-0000.uf2",
+  "sha256": "1e99c65d33c733d51f566f1f5947c1a6526b19abe6d7b92e965f6cf2e691370a",
+  "valid": true,
+  "block_count": 16,
+  "first_address": "0x10005000",
+  "last_address_exclusive": "0x10006000",
+  "family_id": "0xe48bff56",
+  "payload_bytes": 4096
+}
+
+==============================================================================
+$ python3 /Users/ilinivan/cybersafe-report/tools/check_uf2.py /Users/ilinivan/cybersafe-report/evidence/patches/return-from-password.uf2
+{
+  "file": "/Users/ilinivan/cybersafe-report/evidence/patches/return-from-password.uf2",
+  "sha256": "f42cd8c8faa26c3d7c343348d9e0cd7126fd2f2b46de1b846770bd1e241296ad",
+  "valid": true,
+  "block_count": 16,
+  "first_address": "0x10000000",
+  "last_address_exclusive": "0x10001000",
+  "family_id": "0xe48bff56",
+  "payload_bytes": 4096
+}
+
+==============================================================================
+$ python3 /Users/ilinivan/cybersafe-report/tools/check_uf2.py /Users/ilinivan/cybersafe-report/evidence/patches/restore-sector-000000.uf2
+{
+  "file": "/Users/ilinivan/cybersafe-report/evidence/patches/restore-sector-000000.uf2",
+  "sha256": "f75ef6dcf905ad81b504b83663eb8188ed28b6519d355eefa464e34f5bc1e2ea",
+  "valid": true,
+  "block_count": 16,
+  "first_address": "0x10000000",
+  "last_address_exclusive": "0x10001000",
+  "family_id": "0xe48bff56",
+  "payload_bytes": 4096
+}
+
+==============================================================================
+$ python3 /Users/ilinivan/cybersafe-report/tools/check_uf2.py /Users/ilinivan/cybersafe-report/evidence/patches/restore-sector-005000.uf2
+{
+  "file": "/Users/ilinivan/cybersafe-report/evidence/patches/restore-sector-005000.uf2",
+  "sha256": "590c5b29a9517af9ff2a0fb00c459e86049a9b6701fd911ab0ab2450d3909d75",
+  "valid": true,
+  "block_count": 16,
+  "first_address": "0x10005000",
+  "last_address_exclusive": "0x10006000",
+  "family_id": "0xe48bff56",
+  "payload_bytes": 4096
+}
+

@@ -1,0 +1,49 @@
+2026-09-27 14:41:28 MSK
+USB:
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleT8122USBXHCI
+
+        RP2040 Flash MSC:
+
+          Product ID: 0x4000
+          Vendor ID: 0xcafe
+          Version: 1.00
+          Serial Number: 123456
+          Manufacturer: PositiveLabs
+          Location ID: 0x01100000
+
+
+MOUNTS
+/dev/disk3s1s1 on / (apfs, sealed, local, read-only, journaled)
+devfs on /dev (devfs, local, nobrowse)
+/dev/disk3s6 on /System/Volumes/VM (apfs, local, noexec, journaled, noatime, nobrowse)
+/dev/disk3s2 on /System/Volumes/Preboot (apfs, local, journaled, nobrowse)
+/dev/disk3s4 on /System/Volumes/Update (apfs, local, journaled, nobrowse)
+/dev/disk1s2 on /System/Volumes/xarts (apfs, local, noexec, journaled, noatime, nobrowse)
+/dev/disk1s1 on /System/Volumes/iSCPreboot (apfs, local, journaled, nobrowse)
+/dev/disk1s3 on /System/Volumes/Hardware (apfs, local, journaled, nobrowse)
+/dev/disk3s5 on /System/Volumes/Data (apfs, local, journaled, nobrowse, protect)
+map auto_home on /System/Volumes/Data/home (autofs, automounted, nobrowse)
+/dev/disk2s1 on /System/Volumes/Update/SFR/mnt1 (apfs, local, journaled, nobrowse)
+/dev/disk3s1 on /System/Volumes/Update/mnt1 (apfs, sealed, local, journaled, nobrowse)
+arc on /Users/ilinivan/b (macfuse_arc, nodev, nosuid, synchronous, mounted by ilinivan)
+/dev/disk5s1 on /Volumes/Archi 5.10.0 (apfs, local, nodev, nosuid, read-only, journaled, noowners, quarantine, mounted by ilinivan)
+/dev/disk6 on /Volumes/NO NAME (msdos, local, nodev, nosuid, noowners, noatime)
+
+VOLUMES
+total 32
+drwxr-xr-x   5 root      wheel    160 Sep 27 13:46 .
+drwxr-xr-x  20 root      wheel    640 Oct 14  2023 ..
+drwxr-xr-x   5 ilinivan  staff    160 Sep  3 15:48 Archi 5.10.0
+lrwxr-xr-x   1 root      wheel      1 Sep 22 13:51 Macintosh HD -> /
+drwx------   1 ilinivan  staff  16384 Jan  1  1980 NO NAME

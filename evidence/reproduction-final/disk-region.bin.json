@@ -1,0 +1,11 @@
+{
+  "time_utc": "2026-09-27T10:15:02.209627+00:00",
+  "usb_vid_pid": "2e8a:0003",
+  "address": "0x10100000",
+  "size_bytes": 1048576,
+  "sha256": "5b07fe65994a80d2bf4cc67fd7d031ff49bfda003ae50f24a3eb41c35e57d053",
+  "two_reads_identical": true,
+  "pin_entered": false,
+  "flash_written": false,
+  "path": "/Users/ilinivan/cybersafe-report/evidence/reproduction-final/disk-region.bin"
+}

@@ -1,0 +1,11 @@
+{
+  "time_utc": "2026-09-27T11:43:42.972783+00:00",
+  "usb_vid_pid": "2e8a:0003",
+  "address": "0x10000000",
+  "size_bytes": 2097152,
+  "sha256": "183ec770b9581e5add2a85dc7d0fa82377bb5d92f7e525281c09250906acc4ca",
+  "two_reads_identical": true,
+  "pin_entered": false,
+  "flash_written": false,
+  "path": "/Users/ilinivan/cybersafe-report/evidence/manual-bootsel-read-20260927-ok/flash.bin"
+}

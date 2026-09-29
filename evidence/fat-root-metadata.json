@@ -1,0 +1,32 @@
+{
+  "image": "/Users/ilinivan/cybersafe-report/evidence/disk-from-region.img",
+  "oem": "MSDOS5.0",
+  "filesystem_label": "FAT12   ",
+  "boot_signature_hex": "55aa",
+  "bytes_per_sector": 512,
+  "sectors_per_cluster": 1,
+  "fat_count": 2,
+  "total_sectors": 2048,
+  "root_offset": "0x2000",
+  "root_entries": [
+    {
+      "short_name": "SYSTEM~1",
+      "attributes": "0x16",
+      "first_cluster": 2,
+      "size_bytes": 0
+    },
+    {
+      "short_name": "YOUR_P~1.ZIP",
+      "attributes": "0x20",
+      "first_cluster": 5,
+      "size_bytes": 691868
+    },
+    {
+      "short_name": "FSEVEN~6",
+      "attributes": "0x10",
+      "first_cluster": 1357,
+      "size_bytes": 0
+    }
+  ],
+  "file_contents_read": false
+}

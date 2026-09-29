@@ -1,0 +1,10 @@
+{
+  "input": "/Users/ilinivan/cybersafe-report/evidence/flash-read-repeat.bin",
+  "input_sha256": "640626b93d7492a6efadba09759cf349d84a45b785cd31703ad37912d6cf9eb9",
+  "flash_offset": "0x100000",
+  "sector_size": 512,
+  "sector_count": 2048,
+  "output": "/Users/ilinivan/cybersafe-report/evidence/disk-repeat.img",
+  "output_sha256": "6df635a0ddfd0f1b5c8c243382cc23dd366c63393fd18a20baaf73d5372e2c4b",
+  "boot_signature_hex": "55aa"
+}

@@ -1,0 +1,11 @@
+{
+  "source": "/Users/ilinivan/cybersafe-report/evidence/reproduction-final/flash.bin",
+  "source_sha256": "640626b93d7492a6efadba09759cf349d84a45b785cd31703ad37912d6cf9eb9",
+  "uf2": "/Users/ilinivan/cybersafe-report/evidence/restore-full-original.uf2",
+  "uf2_sha256": "1915760aaeea360dd6da47bf10906789312b57341dee3214c2f7bca3f33054ae",
+  "uf2_size": 4194304,
+  "blocks": 8192,
+  "target_first": "0x10000000",
+  "target_last_exclusive": "0x10200000",
+  "reconstructed_image_matches_source": true
+}

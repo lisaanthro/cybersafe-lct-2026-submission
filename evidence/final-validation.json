@@ -1,0 +1,129 @@
+{
+  "valid": true,
+  "checks": {
+    "reproduction-final/flash.bin": {
+      "size": 2097152,
+      "sha256": "640626b93d7492a6efadba09759cf349d84a45b785cd31703ad37912d6cf9eb9"
+    },
+    "reproduction-final/pin.bin": {
+      "size": 4,
+      "sha256": "080fe7399f197fc37d89d01ffbbb17f04f7f2ba3dd84baab2b5f09b3fc54a140"
+    },
+    "reproduction-final/disk-region.bin": {
+      "size": 1048576,
+      "sha256": "5b07fe65994a80d2bf4cc67fd7d031ff49bfda003ae50f24a3eb41c35e57d053"
+    },
+    "reproduction-final/disk.img": {
+      "size": 1048576,
+      "sha256": "6df635a0ddfd0f1b5c8c243382cc23dd366c63393fd18a20baaf73d5372e2c4b"
+    },
+    "manual_button_20260927": {
+      "files": {
+        "manual-button-20260927/flash.bin": {
+          "size": 2097152,
+          "sha256": "183ec770b9581e5add2a85dc7d0fa82377bb5d92f7e525281c09250906acc4ca"
+        },
+        "manual-button-20260927/pin.bin": {
+          "size": 4,
+          "sha256": "080fe7399f197fc37d89d01ffbbb17f04f7f2ba3dd84baab2b5f09b3fc54a140"
+        },
+        "manual-button-20260927/disk-region.bin": {
+          "size": 1048576,
+          "sha256": "a8e537b29d87c960eac967df56e15e0474e850f6ed34fcdf92e09022b382f87f"
+        },
+        "manual-button-20260927/disk.img": {
+          "size": 1048576,
+          "sha256": "ca31ed53d0d408e66119b5835dcfada0e40c828b974160800e44c328cd2892b6"
+        }
+      },
+      "transition": "cafe:4000 -> 2e8a:0003",
+      "pin": "8170",
+      "firmware_first_1MiB_identical": true,
+      "fat_file_contents_read": false
+    },
+    "fat_boot_sector": {
+      "oem": "MSDOS5.0",
+      "filesystem": "FAT12",
+      "signature": "55aa"
+    },
+    "json_files_parsed": 44,
+    "proof_flags": {
+      "fat_contents_read": false,
+      "ram_exec": true,
+      "transform_roundtrip": true,
+      "malleability": true
+    },
+    "independent_decode_paths": {
+      "direct_region_sha256": "6df635a0ddfd0f1b5c8c243382cc23dd366c63393fd18a20baaf73d5372e2c4b",
+      "full_flash_sha256": "6df635a0ddfd0f1b5c8c243382cc23dd366c63393fd18a20baaf73d5372e2c4b",
+      "identical": true,
+      "fat12": true,
+      "file_contents_read": false
+    },
+    "patch_uf2": {
+      "bypass-compare.uf2": {
+        "blocks": 16,
+        "first": "0x10000000",
+        "last_exclusive": "0x10001000"
+      },
+      "skip-password-call.uf2": {
+        "blocks": 16,
+        "first": "0x10000000",
+        "last_exclusive": "0x10001000"
+      },
+      "pin-0000.uf2": {
+        "blocks": 16,
+        "first": "0x10005000",
+        "last_exclusive": "0x10006000"
+      },
+      "return-from-password.uf2": {
+        "blocks": 16,
+        "first": "0x10000000",
+        "last_exclusive": "0x10001000"
+      }
+    },
+    "patch_roundtrip": {
+      "patches": 4,
+      "restore_sectors": 2,
+      "all_checks_passed": true
+    },
+    "method_catalog": {
+      "variants": 42,
+      "A": 7,
+      "B": 8,
+      "C": 25,
+      "N": 2
+    },
+    "new_live_checks": {
+      "M20_pin_0000": true,
+      "M20_restored": true,
+      "M12_partial": true,
+      "M11_camera_negative": true
+    },
+    "final_device_health": {
+      "usb_present": true,
+      "vid_pid": "cafe:4000",
+      "volume_mounted_in_snapshot": false
+    },
+    "proof_matrix": {
+      "stages": 14,
+      "vectors": 12,
+      "artifacts": 64
+    },
+    "method_proof_matrix": {
+      "methods": 42,
+      "A": 7,
+      "B": 8,
+      "C": 25,
+      "N": 2,
+      "unique_supporting_artifacts": 48
+    },
+    "zip_files_in_package": [],
+    "documents": {
+      "docx_paragraphs": 508,
+      "docx_tables": 50,
+      "pdf_pages": 22
+    },
+    "fsck_msdos": "passed"
+  }
+}

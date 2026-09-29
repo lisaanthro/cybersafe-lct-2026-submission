@@ -1,0 +1,937 @@
+{
+  "generated_utc": "2026-09-27T13:32:23.110506+00:00",
+  "purpose": "proof and limitation audit for every report method variant",
+  "status_legend": {
+    "A": "выполнено на живой выданной плате",
+    "B": "подтверждено на дампе этой платы или готовым проверенным артефактом",
+    "C": "план или частичная проверка; полная атака не выполнена",
+    "N": "проверено с отрицательным результатом"
+  },
+  "counts": {
+    "methods": 42,
+    "A": 7,
+    "B": 8,
+    "C": 25,
+    "N": 2,
+    "unique_supporting_artifacts": 48
+  },
+  "methods": [
+    {
+      "id": "M01",
+      "method": "Считать всю flash через PICOBOOT PC_READ",
+      "class": "USB / загрузчик",
+      "complexity": "низкая",
+      "report_status": "A",
+      "report_proof_cell": "reproduction-final/session.log, ручной прогон manual-button-20260927/session.log",
+      "root_vector": "V-01",
+      "catalog_category": "A",
+      "proof_kind": "live_board",
+      "completed_live": true,
+      "supporting_artifacts": [
+        "evidence/reproduction-final/session.log",
+        "evidence/reproduction-final/flash.bin.json",
+        "evidence/manual-button-20260927/session.log",
+        "evidence/manual-button-20260927/compare-with-initial.json"
+      ],
+      "limitation": "Живой read-only дамп сделан дважды; пользовательский ZIP не открывался."
+    },
+    {
+      "id": "M02",
+      "method": "Считать только область диска 0x10100000..0x101fffff",
+      "class": "USB / загрузчик",
+      "complexity": "низкая",
+      "report_status": "A",
+      "report_proof_cell": "тот же лог, disk-region.bin.json",
+      "root_vector": "V-01",
+      "catalog_category": "A",
+      "proof_kind": "live_board",
+      "completed_live": true,
+      "supporting_artifacts": [
+        "evidence/reproduction-final/disk-region.bin.json",
+        "evidence/manual-button-20260927/disk-region.bin.json"
+      ],
+      "limitation": "Живое чтение диапазона сделано дважды; содержимое файлов не извлекалось."
+    },
+    {
+      "id": "M03",
+      "method": "Считать только 4 байта PIN по 0x10005500",
+      "class": "USB / загрузчик",
+      "complexity": "низкая",
+      "report_status": "A",
+      "report_proof_cell": "тот же лог, pin.bin.json",
+      "root_vector": "V-01",
+      "catalog_category": "A",
+      "proof_kind": "live_board",
+      "completed_live": true,
+      "supporting_artifacts": [
+        "evidence/reproduction-final/pin.bin.json",
+        "evidence/manual-button-20260927/pin.bin.json"
+      ],
+      "limitation": "Четыре байта считаны без PIN и повторены в отдельной сессии."
+    },
+    {
+      "id": "M04",
+      "method": "Сделать тот же дамп штатным picotool save -a",
+      "class": "USB / загрузчик",
+      "complexity": "низкая",
+      "report_status": "C",
+      "report_proof_cell": "официальный picotool, команда приведена ниже",
+      "root_vector": "V-01",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [],
+      "limitation": "picotool на этом ноутбуке не установлен и команда не запускалась; это альтернативный клиент того же ROM-примитива."
+    },
+    {
+      "id": "M05",
+      "method": "Найти PIN статическим анализом полного дампа",
+      "class": "программная",
+      "complexity": "низкая",
+      "report_status": "B",
+      "report_proof_cell": "firmware-analysis.json",
+      "root_vector": "V-02",
+      "catalog_category": "B",
+      "proof_kind": "offline_device_specific",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/reproduction-final/firmware-analysis.json",
+        "evidence/password-routine-disassembly.txt"
+      ],
+      "limitation": "Статический анализ дампа; работоспособность найденного PIN отдельно подтверждена M06."
+    },
+    {
+      "id": "M06",
+      "method": "Ввести найденный PIN 8170 и открыть штатный USB MSC",
+      "class": "программная цепочка",
+      "complexity": "низкая",
+      "report_status": "A",
+      "report_proof_cell": "normal-unlock-proof.txt",
+      "root_vector": "V-02",
+      "catalog_category": "A",
+      "proof_kind": "live_board",
+      "completed_live": true,
+      "supporting_artifacts": [
+        "evidence/normal-unlock-proof.txt",
+        "evidence/final-device-state.txt"
+      ],
+      "limitation": "PIN введён вручную; лог хоста видит USB и mount, но не электрические события энкодера."
+    },
+    {
+      "id": "M07",
+      "method": "Раскодировать диск фиксированным XOR без PIN",
+      "class": "криптографическая",
+      "complexity": "низкая",
+      "report_status": "B",
+      "report_proof_cell": "disk.img.json, fsck_msdos в логе",
+      "root_vector": "V-03",
+      "catalog_category": "B",
+      "proof_kind": "offline_device_specific",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/reproduction-final/disk.img.json",
+        "evidence/reproduction-final/fat-root.json",
+        "evidence/disk-from-region.img.json",
+        "evidence/disk-repeat.img.json",
+        "evidence/fat-root-metadata.json"
+      ],
+      "limitation": "Два независимых пути дали одинаковый FAT12; содержимое ZIP не читалось."
+    },
+    {
+      "id": "M08",
+      "method": "Получить фрагмент XOR-потока по известным байтам FAT",
+      "class": "криптографическая",
+      "complexity": "низкая",
+      "report_status": "B",
+      "report_proof_cell": "transform/transform-proof.json",
+      "root_vector": "V-03",
+      "catalog_category": "B",
+      "proof_kind": "offline_device_specific",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/transform/transform-proof.json"
+      ],
+      "limitation": "Known plaintext восстанавливает поток только на известных позициях; полный диск декодирован по алгоритму из прошивки."
+    },
+    {
+      "id": "M09",
+      "method": "Направленно менять шифротекст, потому что нет MAC",
+      "class": "криптографическая",
+      "complexity": "низкая",
+      "report_status": "B",
+      "report_proof_cell": "там же, метка HACKATHON",
+      "root_vector": "V-03",
+      "catalog_category": "B",
+      "proof_kind": "offline_device_specific",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/transform/transform-proof.json",
+        "evidence/transform/sector0-label-modified-cipher.bin"
+      ],
+      "limitation": "Направленная замена доказана на копии сектора; flash платы не менялась."
+    },
+    {
+      "id": "M10",
+      "method": "Клонировать область диска или применить поток к другой такой плате",
+      "class": "replay / криптографическая",
+      "complexity": "низкая",
+      "report_status": "B",
+      "report_proof_cell": "обратное кодирование совпало байт в байт",
+      "root_vector": "V-03",
+      "catalog_category": "B",
+      "proof_kind": "offline_device_specific",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/transform/transform-proof.json"
+      ],
+      "limitation": "Обратное кодирование совпало на этой плате; перенос на второй экземпляр не проверялся."
+    },
+    {
+      "id": "M11",
+      "method": "Узнать PIN по задержке 50 мс на каждый верный символ префикса",
+      "class": "side-channel timing",
+      "complexity": "низкая",
+      "report_status": "N для камеры",
+      "report_proof_cell": "код: disassembly-proof.txt; отрицательный опыт: timing-camera-20260927/",
+      "root_vector": "V-04",
+      "catalog_category": "N",
+      "proof_kind": "negative_result",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/password-routine-disassembly.txt",
+        "evidence/timing-camera-20260927/README.txt",
+        "evidence/timing-camera-20260927/result.json"
+      ],
+      "limitation": "Камера 240 FPS не дала различимого сигнала; PIN этим способом не получен."
+    },
+    {
+      "id": "M12",
+      "method": "Полный перебор 0000…9999: постоянной блокировки нет",
+      "class": "логическая / brute force",
+      "complexity": "средняя",
+      "report_status": "C, частично live",
+      "report_proof_cell": "10 ошибок и новый USB-сеанс: live-no-lockout-20260927/; полный прогон не делался",
+      "root_vector": "V-04",
+      "catalog_category": "C",
+      "proof_kind": "partial_live",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/live-no-lockout-20260927/result.json",
+        "evidence/live-no-lockout-20260927/session.txt",
+        "evidence/live-no-lockout-20260927/ioreg-after-success.txt"
+      ],
+      "limitation": "Проверены 10 заявленных ошибок и успешный вход; нажатия не считались электрически, диапазон 0000..9999 не пройден."
+    },
+    {
+      "id": "M13",
+      "method": "Автоматический перебор энкодера вторым МК",
+      "class": "аппаратная автоматизация",
+      "complexity": "средняя",
+      "report_status": "C",
+      "report_proof_cell": "GPIO найдены, схема шагов ниже",
+      "root_vector": "V-04",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/firmware-analysis.json"
+      ],
+      "limitation": "GPIO найдены статически, второй МК к плате не подключался."
+    },
+    {
+      "id": "M14",
+      "method": "Второй МК + timing oracle, максимум около 40 кандидатов",
+      "class": "аппаратная + side-channel",
+      "complexity": "средняя",
+      "report_status": "C",
+      "report_proof_cell": "GPIO и задержка подтверждены статически",
+      "root_vector": "V-04",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/password-routine-disassembly.txt",
+        "evidence/timing-camera-20260927/result.json"
+      ],
+      "limitation": "Ранний выход и задержка есть в коде; электрический датчик и автомат ввода не собирались, камера дала отрицательный результат."
+    },
+    {
+      "id": "M15",
+      "method": "Записать и выполнить код в SRAM через PC_WRITE + PC_EXEC",
+      "class": "USB / code execution",
+      "complexity": "средняя",
+      "report_status": "A",
+      "report_proof_cell": "evidence/ram-exec-proof.json",
+      "root_vector": "V-05",
+      "catalog_category": "A",
+      "proof_kind": "live_board",
+      "completed_live": true,
+      "supporting_artifacts": [
+        "evidence/ram-exec-proof.json"
+      ],
+      "limitation": "Выполнен короткий маркерный payload и восстановлена SRAM; данные диска этим payload не снимались."
+    },
+    {
+      "id": "M16",
+      "method": "RAM-only дампер или дешифратор без изменения flash",
+      "class": "USB / code execution",
+      "complexity": "средняя",
+      "report_status": "C",
+      "report_proof_cell": "примитив M15 работает, полный дампер не закончен",
+      "root_vector": "V-05",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/ram-exec-proof.json",
+        "evidence/ram-sector-debug.bin.json"
+      ],
+      "limitation": "Примитив M15 работает, но RAM-only копировщик сектора не закончен; отладочный опыт дал FF до снятия питания."
+    },
+    {
+      "id": "M17",
+      "method": "Патч BNE -> NOP, любой PIN становится правильным",
+      "class": "модификация прошивки",
+      "complexity": "низкая",
+      "report_status": "B",
+      "report_proof_cell": "patches/bypass-compare.uf2",
+      "root_vector": "V-06",
+      "catalog_category": "B",
+      "proof_kind": "offline_device_specific",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/patches/bypass-compare.uf2",
+        "evidence/patches/patch-manifest.json",
+        "evidence/patches/roundtrip-proof.json",
+        "evidence/disassembly-proof.txt",
+        "evidence/uf2-validation.txt"
+      ],
+      "limitation": "Байты и UF2 проверены офлайн; на плату этот патч не записывался."
+    },
+    {
+      "id": "M18",
+      "method": "Убрать вызов функции PIN: BL -> NOP; NOP",
+      "class": "модификация прошивки",
+      "complexity": "низкая",
+      "report_status": "B",
+      "report_proof_cell": "patches/skip-password-call.uf2",
+      "root_vector": "V-06",
+      "catalog_category": "B",
+      "proof_kind": "offline_device_specific",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/patches/skip-password-call.uf2",
+        "evidence/patches/patch-manifest.json",
+        "evidence/patches/roundtrip-proof.json",
+        "evidence/disassembly-proof.txt",
+        "evidence/uf2-validation.txt"
+      ],
+      "limitation": "Байты и UF2 проверены офлайн; на плату этот патч не записывался."
+    },
+    {
+      "id": "M19",
+      "method": "Поставить BX LR в начало функции PIN",
+      "class": "модификация прошивки",
+      "complexity": "низкая",
+      "report_status": "B",
+      "report_proof_cell": "patches/return-from-password.uf2",
+      "root_vector": "V-06",
+      "catalog_category": "B",
+      "proof_kind": "offline_device_specific",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/patches/return-from-password.uf2",
+        "evidence/patches/patch-manifest.json",
+        "evidence/patches/roundtrip-proof.json",
+        "evidence/disassembly-proof.txt",
+        "evidence/uf2-validation.txt"
+      ],
+      "limitation": "Байты и UF2 проверены офлайн; на плату этот патч не записывался."
+    },
+    {
+      "id": "M20",
+      "method": "Заменить сохранённый PIN на 0000",
+      "class": "модификация данных",
+      "complexity": "низкая",
+      "report_status": "A",
+      "report_proof_cell": "live-pin-0000-20260927/, patches/pin-0000.uf2",
+      "root_vector": "V-06",
+      "catalog_category": "A",
+      "proof_kind": "live_board",
+      "completed_live": true,
+      "supporting_artifacts": [
+        "evidence/patches/pin-0000.uf2",
+        "evidence/patches/restore-sector-005000.uf2",
+        "evidence/patches/roundtrip-proof.json",
+        "evidence/live-pin-0000-20260927/result.json",
+        "evidence/live-pin-0000-20260927/03-patch-write.txt",
+        "evidence/live-pin-0000-20260927/05-pin-0000-success.txt",
+        "evidence/live-pin-0000-20260927/08-restore-write.txt",
+        "evidence/live-pin-0000-20260927/10-operator-confirmation.txt",
+        "evidence/final-device-state.txt"
+      ],
+      "limitation": "PIN 0000 проверен на плате и сектор восстановлен; прямое чтение четырёх байтов после restore не выполнено, зато 8170 проверен после полного переподключения."
+    },
+    {
+      "id": "M21",
+      "method": "Залить свою unsigned MSC-прошивку, которая отдаёт расшифрованные сектора",
+      "class": "прошивка / USB",
+      "complexity": "средняя",
+      "report_status": "C",
+      "report_proof_cell": "загрузчик запись разрешает, реализация описана",
+      "root_vector": "V-06",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [],
+      "limitation": "Собственная MSC-прошивка не написана и не запускалась."
+    },
+    {
+      "id": "M22",
+      "method": "Залить полный изменённый образ через UF2/PICOBOOT",
+      "class": "прошивка / supply chain",
+      "complexity": "средняя",
+      "report_status": "C",
+      "report_proof_cell": "валидные UF2 и исходный дамп готовы",
+      "root_vector": "V-06",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/restore-full-original.uf2",
+        "evidence/restore-full-original.json",
+        "evidence/patches/patch-manifest.json",
+        "evidence/uf2-validation.txt"
+      ],
+      "limitation": "Полный модифицированный образ не записывался; готовы точечные UF2 и полный UF2 возврата."
+    },
+    {
+      "id": "M23",
+      "method": "Подавать фазы энкодера и кнопку прямо на GPIO",
+      "class": "аппаратная",
+      "complexity": "низкая",
+      "report_status": "C",
+      "report_proof_cell": "GPIO 29/27/28 найдены в коде",
+      "root_vector": "V-07",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/firmware-analysis.json"
+      ],
+      "limitation": "Электрический автомат ввода не подключался; есть только статически найденные GPIO."
+    },
+    {
+      "id": "M24",
+      "method": "Снять ввод камерой/фотодиодами с кольца из 10 LED",
+      "class": "визуальный side-channel",
+      "complexity": "низкая",
+      "report_status": "C",
+      "report_proof_cell": "таблица GPIO LED найдена в коде",
+      "root_vector": "V-07",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/firmware-analysis.json",
+        "images/board-from-task.png"
+      ],
+      "limitation": "Съёмка фактического ввода владельца не выполнялась; камера 240 FPS проверяла другой timing-сценарий M11 и там не сработала."
+    },
+    {
+      "id": "M25",
+      "method": "Сниффить A/B/button логическим анализатором при вводе владельцем",
+      "class": "аппаратный side-channel",
+      "complexity": "низкая",
+      "report_status": "C",
+      "report_proof_cell": "точки GPIO известны",
+      "root_vector": "V-07",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/firmware-analysis.json",
+        "images/board-from-task.png"
+      ],
+      "limitation": "Логический анализатор к линиям энкодера не подключался."
+    },
+    {
+      "id": "M26",
+      "method": "Считать flash через SWD/OpenOCD",
+      "class": "debug-интерфейс",
+      "complexity": "средняя",
+      "report_status": "C",
+      "report_proof_cell": "RP2040 и внешний flash установлены",
+      "root_vector": "V-08",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "images/board-from-task.png"
+      ],
+      "limitation": "SWD-точки и отсутствие защиты живым probe не проверялись."
+    },
+    {
+      "id": "M27",
+      "method": "Через SWD остановиться на сравнении и переставить PC на ветку успеха",
+      "class": "debug / fault by debugger",
+      "complexity": "средняя",
+      "report_status": "C",
+      "report_proof_cell": "адреса 0xc8c и 0xc9a известны",
+      "root_vector": "V-08",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/password-routine-disassembly.txt"
+      ],
+      "limitation": "Адрес ветки известен, но остановка CPU и перенос PC через SWD не выполнялись."
+    },
+    {
+      "id": "M28",
+      "method": "Через SWD снять SRAM после разблокировки",
+      "class": "debug / memory forensics",
+      "complexity": "средняя",
+      "report_status": "C",
+      "report_proof_cell": "диапазон SRAM и флаг успеха известны",
+      "root_vector": "V-08",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/firmware-analysis.json",
+        "evidence/sram-read.bin.json"
+      ],
+      "limitation": "SRAM через SWD без reset не читалась; чтение после BOOTSEL дало отрицательный M40."
+    },
+    {
+      "id": "M29",
+      "method": "Читать SPI flash прищепкой, удерживая RP2040 в RESET",
+      "class": "физическая",
+      "complexity": "средняя",
+      "report_status": "C",
+      "report_proof_cell": "flash внешняя, карта адресов готова",
+      "root_vector": "V-09",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "images/board-from-task.png",
+        "evidence/reproduction-final/flash.bin.json"
+      ],
+      "limitation": "Прищепка и внешний программатор не подключались; пригодность контактов in-circuit не проверена."
+    },
+    {
+      "id": "M30",
+      "method": "Выпаять flash и прочитать программатором",
+      "class": "физическая / chip-off",
+      "complexity": "высокая",
+      "report_status": "C",
+      "report_proof_cell": "декодер образа готов",
+      "root_vector": "V-09",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "images/board-from-task.png",
+        "evidence/reproduction-final/flash.bin.json"
+      ],
+      "limitation": "Микросхема не выпаивалась; риск высокий, запасной платы нет."
+    },
+    {
+      "id": "M31",
+      "method": "Сниффить QSPI при загрузке или чтении диска",
+      "class": "аппаратный side-channel",
+      "complexity": "высокая",
+      "report_status": "C",
+      "report_proof_cell": "адрес области диска известен",
+      "root_vector": "V-09",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/firmware-analysis.json",
+        "evidence/reproduction-final/disk-region.bin.json"
+      ],
+      "limitation": "QSPI-трасса анализатором не снималась."
+    },
+    {
+      "id": "M32",
+      "method": "Поставить flash-клон с изменённой проверкой",
+      "class": "физическая модификация",
+      "complexity": "высокая",
+      "report_status": "C",
+      "report_proof_cell": "четыре готовых бинарных патча",
+      "root_vector": "V-09",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/patches/patch-manifest.json",
+        "evidence/patches/roundtrip-proof.json"
+      ],
+      "limitation": "Клон flash не устанавливался; готовые патчи проверены только как файлы, кроме M20."
+    },
+    {
+      "id": "M33",
+      "method": "После получения PIN получить обычный USB MSC-доступ",
+      "class": "USB",
+      "complexity": "низкая",
+      "report_status": "A",
+      "report_proof_cell": "штатный том смонтирован как NO NAME",
+      "root_vector": "V-10",
+      "catalog_category": "A",
+      "proof_kind": "live_board",
+      "completed_live": true,
+      "supporting_artifacts": [
+        "evidence/normal-unlock-proof.txt",
+        "evidence/final-device-state.txt",
+        "evidence/final-audit-20260927/result.json"
+      ],
+      "limitation": "Штатный MSC подтверждён после PIN 8170; содержимое ZIP не открывалось."
+    },
+    {
+      "id": "M34",
+      "method": "Пассивно записать USB-трафик после легального разблокирования",
+      "class": "USB sniffing",
+      "complexity": "средняя",
+      "report_status": "C",
+      "report_proof_cell": "план Wireshark/USBPcap ниже",
+      "root_vector": "V-10",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/normal-unlock-proof.txt"
+      ],
+      "limitation": "USB-трафик анализатором не записывался; есть только факт обычного MSC."
+    },
+    {
+      "id": "M35",
+      "method": "Глитч питания на условном переходе проверки",
+      "class": "fault injection",
+      "complexity": "высокая",
+      "report_status": "C",
+      "report_proof_cell": "точный момент ветки найден",
+      "root_vector": "V-11",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/password-routine-disassembly.txt"
+      ],
+      "limitation": "Voltage glitch не выполнялся; окно известно только по машинному коду."
+    },
+    {
+      "id": "M36",
+      "method": "Глитч тактового сигнала на сравнении",
+      "class": "fault injection",
+      "complexity": "высокая",
+      "report_status": "C",
+      "report_proof_cell": "точка синхронизации — четвёртое нажатие",
+      "root_vector": "V-11",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/password-routine-disassembly.txt"
+      ],
+      "limitation": "Clock glitch не выполнялся; внешний тактовый тракт на стенде не проверен."
+    },
+    {
+      "id": "M37",
+      "method": "EMFI по RP2040 во время BNE",
+      "class": "fault injection",
+      "complexity": "высокая",
+      "report_status": "C",
+      "report_proof_cell": "окно и адрес известны",
+      "root_vector": "V-11",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/password-routine-disassembly.txt"
+      ],
+      "limitation": "EMFI-оборудование не использовалось."
+    },
+    {
+      "id": "M38",
+      "method": "Испортить выборку инструкции/PIN на линиях QSPI",
+      "class": "bus fault injection",
+      "complexity": "высокая",
+      "report_status": "C",
+      "report_proof_cell": "код и PIN лежат во внешней flash",
+      "root_vector": "V-11",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/password-routine-disassembly.txt",
+        "evidence/firmware-analysis.json"
+      ],
+      "limitation": "Инъекция на QSPI не выполнялась; есть карта адресов и код проверки."
+    },
+    {
+      "id": "M39",
+      "method": "После получения FAT искать удалённые кластеры и старые данные",
+      "class": "data recovery",
+      "complexity": "низкая",
+      "report_status": "C",
+      "report_proof_cell": "FAT12 валиден, содержимое не трогалось",
+      "root_vector": "V-12",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/fat-root-metadata.json",
+        "evidence/organizer-qa-notes-20260927.md"
+      ],
+      "limitation": "Carving намеренно не запускался: ZIP организаторы назвали пасхалкой вне задания."
+    },
+    {
+      "id": "M40",
+      "method": "Считать остатки plaintext из SRAM уже в BOOTSEL",
+      "class": "memory forensics",
+      "complexity": "низкая",
+      "report_status": "N",
+      "report_proof_cell": "SRAM считана, сигнатур не найдено",
+      "root_vector": "V-12",
+      "catalog_category": "N",
+      "proof_kind": "negative_result",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/sram-read.bin",
+        "evidence/sram-read.bin.json"
+      ],
+      "limitation": "Вся SRAM после RESET/BOOTSEL считана, полезные сигнатуры не найдены."
+    },
+    {
+      "id": "M41",
+      "method": "Мерить 50-мс ступени по току или ЭМ, а не по LED",
+      "class": "power/EM side-channel",
+      "complexity": "средняя",
+      "report_status": "C",
+      "report_proof_cell": "задержка в коде подтверждена",
+      "root_vector": "V-11",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/password-routine-disassembly.txt",
+        "evidence/timing-camera-20260927/result.json"
+      ],
+      "limitation": "Ток и ЭМ не измерялись; камера не увидела разницу, наличие задержки подтверждено только кодом."
+    },
+    {
+      "id": "M42",
+      "method": "Записать движение ручки и щелчки камерой/микрофоном",
+      "class": "физический side-channel",
+      "complexity": "низкая",
+      "report_status": "C",
+      "report_proof_cell": "стартовое значение видно по LED",
+      "root_vector": "V-07",
+      "catalog_category": "C",
+      "proof_kind": "plan_only",
+      "completed_live": false,
+      "supporting_artifacts": [
+        "evidence/firmware-analysis.json",
+        "images/board-from-task.png"
+      ],
+      "limitation": "Видео или аудиозапись реального ввода владельца не делалась."
+    }
+  ],
+  "artifact_index": {
+    "evidence/disassembly-proof.txt": {
+      "size_bytes": 5687,
+      "sha256": "03848069f8fe51be0c8b493bd866b2d835ab6e286396ee9ffe04da473c51f498"
+    },
+    "evidence/disk-from-region.img.json": {
+      "size_bytes": 424,
+      "sha256": "ad596d4dbdb4bef41920ae1afc0a56fd5b3c4de0880db53e96a973ca0f6363d8"
+    },
+    "evidence/disk-repeat.img.json": {
+      "size_bytes": 435,
+      "sha256": "be4afde575bbbad3f00b600d0984e4458971eb69f77e7fe0096ce1b4086f9718"
+    },
+    "evidence/fat-root-metadata.json": {
+      "size_bytes": 722,
+      "sha256": "40348798cc28787b9903ca6e0a606524a33d2c516acf455fd87cb95164843b53"
+    },
+    "evidence/final-audit-20260927/result.json": {
+      "size_bytes": 944,
+      "sha256": "56d2b3a8fd0e5e6542bf800fa8b93b0211522998dfbe7f113d7a2970e1ccb379"
+    },
+    "evidence/final-device-state.txt": {
+      "size_bytes": 1946,
+      "sha256": "6fe870887b195b7a5607587d90b6ae53068657ca8be340f541b193a0022eac2b"
+    },
+    "evidence/firmware-analysis.json": {
+      "size_bytes": 2471,
+      "sha256": "7112747d8fde8817297cc750d172d6acf7e685fd3a25584a3079be61a5b79d74"
+    },
+    "evidence/live-no-lockout-20260927/ioreg-after-success.txt": {
+      "size_bytes": 1589,
+      "sha256": "65cca735baea084565c68edbe18570162fa39ae02166367ba45db5df81ed3306"
+    },
+    "evidence/live-no-lockout-20260927/result.json": {
+      "size_bytes": 792,
+      "sha256": "269c83aebe61161c5d5afb6a49a815c74bf4e2a97d45823d0250466e79befadc"
+    },
+    "evidence/live-no-lockout-20260927/session.txt": {
+      "size_bytes": 907,
+      "sha256": "1436d3669a50d455f42355357f02bf9e5882b22231bd142ab9f90f1a4016fd0b"
+    },
+    "evidence/live-pin-0000-20260927/03-patch-write.txt": {
+      "size_bytes": 236,
+      "sha256": "4dd658da9dea7ccd3f9c5077e23653c754cade93679f46fed33e383db5512ecd"
+    },
+    "evidence/live-pin-0000-20260927/05-pin-0000-success.txt": {
+      "size_bytes": 769,
+      "sha256": "e7a12cc160e66083063c8960ebf328ef24872a696653c178c4f84175b85f2fec"
+    },
+    "evidence/live-pin-0000-20260927/08-restore-write.txt": {
+      "size_bytes": 270,
+      "sha256": "607c4c13f59e3bec4c70544d1e001a95fdde6ad09d8e7ee22c2d00317ea5e00f"
+    },
+    "evidence/live-pin-0000-20260927/10-operator-confirmation.txt": {
+      "size_bytes": 732,
+      "sha256": "0015e8b001cd2e298c678f8b23b8af306571f26f5beaf3a8a637e79ad6840607"
+    },
+    "evidence/live-pin-0000-20260927/result.json": {
+      "size_bytes": 784,
+      "sha256": "b2d1d868139d6ed5e5f24d9ace75ce5a217872da171d76f531c3a12d1b2eb3eb"
+    },
+    "evidence/manual-button-20260927/compare-with-initial.json": {
+      "size_bytes": 663,
+      "sha256": "c4c994603f6622bb0b26c0e77e41f794a78aac3d78f88a8701638b27523b0202"
+    },
+    "evidence/manual-button-20260927/disk-region.bin.json": {
+      "size_bytes": 399,
+      "sha256": "03063227dc80a07486bf2ef21242328cb6d412029df37571a71ec08630180034"
+    },
+    "evidence/manual-button-20260927/pin.bin.json": {
+      "size_bytes": 385,
+      "sha256": "18891dc39f5b9ba4e93e8c206f177952c15b5970c0ae5be4ed8a1b6f7c34c4c7"
+    },
+    "evidence/manual-button-20260927/session.log": {
+      "size_bytes": 8517,
+      "sha256": "3041983ff0813599446d7f2c3ee4758f18db7458f4f56e17f5ee12d852d8bfdd"
+    },
+    "evidence/normal-unlock-proof.txt": {
+      "size_bytes": 1946,
+      "sha256": "53d1b913431b40bc71ccb06e4fc9be8f6332be15f3b40f79ef0665f1eb3e1f8e"
+    },
+    "evidence/organizer-qa-notes-20260927.md": {
+      "size_bytes": 3072,
+      "sha256": "caf90076fede65490a6fa14cb1d9510a617c083b7eb3f4fae75c1a9501ccfc9b"
+    },
+    "evidence/password-routine-disassembly.txt": {
+      "size_bytes": 4104,
+      "sha256": "437e1f34a92ac26a89c5cc68ea65fa1e4f9fc0833f05c6a49540d5838965ffc6"
+    },
+    "evidence/patches/bypass-compare.uf2": {
+      "size_bytes": 8192,
+      "sha256": "a13254bfb00e6c1d0efeb3eb7c2093d84464b923a4cf614b145914eaee75da14"
+    },
+    "evidence/patches/patch-manifest.json": {
+      "size_bytes": 3614,
+      "sha256": "bd0e6707782fec98dd2102a53dc4de4c1dd94ee135f980da8d877845100de8db"
+    },
+    "evidence/patches/pin-0000.uf2": {
+      "size_bytes": 8192,
+      "sha256": "1e99c65d33c733d51f566f1f5947c1a6526b19abe6d7b92e965f6cf2e691370a"
+    },
+    "evidence/patches/restore-sector-005000.uf2": {
+      "size_bytes": 8192,
+      "sha256": "590c5b29a9517af9ff2a0fb00c459e86049a9b6701fd911ab0ab2450d3909d75"
+    },
+    "evidence/patches/return-from-password.uf2": {
+      "size_bytes": 8192,
+      "sha256": "f42cd8c8faa26c3d7c343348d9e0cd7126fd2f2b46de1b846770bd1e241296ad"
+    },
+    "evidence/patches/roundtrip-proof.json": {
+      "size_bytes": 2921,
+      "sha256": "10ca5d9ea5c38640ae3f1df4b655ff368839ffbb61aaa6c5b4f74f50f529b8f5"
+    },
+    "evidence/patches/skip-password-call.uf2": {
+      "size_bytes": 8192,
+      "sha256": "d98bd6719c775d925ec04810bf68de2e91d7ac60eb772797e51960afc6473ff4"
+    },
+    "evidence/ram-exec-proof.json": {
+      "size_bytes": 513,
+      "sha256": "de37c154e4e3bc828af50098aa925b672ed156fd286c2dd2f89b9bc7fad1e962"
+    },
+    "evidence/ram-sector-debug.bin.json": {
+      "size_bytes": 368,
+      "sha256": "d78704e68562d59f7d4fab9eecdca6407798dfabdb41007dba85f7ea8ed710f6"
+    },
+    "evidence/reproduction-final/disk-region.bin.json": {
+      "size_bytes": 386,
+      "sha256": "e9c1b078becceed22b8d06c67ada87005209900b4b44c7c4a5a89d78a1631b59"
+    },
+    "evidence/reproduction-final/disk.img.json": {
+      "size_bytes": 443,
+      "sha256": "73bd4420f788d113d71402aaa219491ca009e6ba45129236e2b8db5b2fcdd322"
+    },
+    "evidence/reproduction-final/fat-root.json": {
+      "size_bytes": 729,
+      "sha256": "ce7b8daf095cc0c44e509a15ccaaecbbe43b2a5199a6c6658ea6c2e7316665cb"
+    },
+    "evidence/reproduction-final/firmware-analysis.json": {
+      "size_bytes": 2478,
+      "sha256": "9f58ea85fb64d2eefea11a48398b844b31b012ae8757058ac7b38c690e00f2e5"
+    },
+    "evidence/reproduction-final/flash.bin.json": {
+      "size_bytes": 380,
+      "sha256": "c6b9060513af54ab3888f5223552cc8e1114800ea835a3961aafd04f0d22e43a"
+    },
+    "evidence/reproduction-final/pin.bin.json": {
+      "size_bytes": 372,
+      "sha256": "3eb585bb2eaf97f0435fc7bcfe7398c20ac779136f650abc1020c47b39733e02"
+    },
+    "evidence/reproduction-final/session.log": {
+      "size_bytes": 9080,
+      "sha256": "397f9dfb7bf4269ca5716cf38b09e1bc272a8c62d3b22a9edfd7255fb8a37a44"
+    },
+    "evidence/restore-full-original.json": {
+      "size_bytes": 500,
+      "sha256": "212246116b430eb57837b9c3c9f04bd60460ed781dbea34f69982bdf53d4f391"
+    },
+    "evidence/restore-full-original.uf2": {
+      "size_bytes": 4194304,
+      "sha256": "1915760aaeea360dd6da47bf10906789312b57341dee3214c2f7bca3f33054ae"
+    },
+    "evidence/sram-read.bin": {
+      "size_bytes": 270336,
+      "sha256": "9f90ada3e201a521cd7b4109ec02f8241153f22cadf5ed6735589b2651271c1b"
+    },
+    "evidence/sram-read.bin.json": {
+      "size_bytes": 364,
+      "sha256": "344e4f18ebaabf54767b087a0bd6603567729890765859dbd54608f18aadd972"
+    },
+    "evidence/timing-camera-20260927/README.txt": {
+      "size_bytes": 1703,
+      "sha256": "ecdcc8be6d5c3e42eeba9647608c88f3da3a7b019fdde857ba333d1083516a9a"
+    },
+    "evidence/timing-camera-20260927/result.json": {
+      "size_bytes": 692,
+      "sha256": "de1dac4993ec1a32710e253954c597759e5cbf01194b1355602dafd664612dbb"
+    },
+    "evidence/transform/sector0-label-modified-cipher.bin": {
+      "size_bytes": 512,
+      "sha256": "b73f2a9b5eb5e52a2134b8cacad8f30b6ae708cd323b425c9ebe13baf4e6bae8"
+    },
+    "evidence/transform/transform-proof.json": {
+      "size_bytes": 1523,
+      "sha256": "0d4e63e72c59bb38799faae56ea268e48331191866ada1f39d9ea12941600c11"
+    },
+    "evidence/uf2-validation.txt": {
+      "size_bytes": 3294,
+      "sha256": "f696702f8b5d594e55ceca4582867c06442c988e5a1753b10896f2f11bad3f1a"
+    },
+    "images/board-from-task.png": {
+      "size_bytes": 258500,
+      "sha256": "818c2803da56d03c37eecdf66971a8bdd35c915c0cb3d711f000f9a65394684a"
+    }
+  }
+}

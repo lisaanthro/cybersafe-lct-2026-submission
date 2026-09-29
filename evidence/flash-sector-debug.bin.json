@@ -1,0 +1,11 @@
+{
+  "time_utc": "2026-09-27T10:18:42.502171+00:00",
+  "usb_vid_pid": "2e8a:0003",
+  "address": "0x10100000",
+  "size_bytes": 512,
+  "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+  "two_reads_identical": true,
+  "pin_entered": false,
+  "flash_written": false,
+  "path": "/Users/ilinivan/cybersafe-report/evidence/flash-sector-debug.bin"
+}

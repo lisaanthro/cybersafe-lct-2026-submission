@@ -1,0 +1,9 @@
+{
+  "input": "/Users/ilinivan/cybersafe-report/evidence/disk-region-direct.bin",
+  "input_sha256": "5b07fe65994a80d2bf4cc67fd7d031ff49bfda003ae50f24a3eb41c35e57d053",
+  "source_address": "0x10100000",
+  "size_bytes": 1048576,
+  "output": "/Users/ilinivan/cybersafe-report/evidence/disk-from-region.img",
+  "output_sha256": "6df635a0ddfd0f1b5c8c243382cc23dd366c63393fd18a20baaf73d5372e2c4b",
+  "boot_signature_hex": "55aa"
+}
