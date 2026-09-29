@@ -1,8 +1,7 @@
 # CyberSafe — ЛЦТ 2026
 
 Закрытый комплект для жюри кейса Positive Technologies. Главное описание:
-[отчёт PDF](CyberSafe_LCT2026_jury_final.pdf). Его можно править в
-[DOCX](CyberSafe_LCT2026_jury_final.docx); исходный текст —
+[отчёт PDF](CyberSafe_LCT2026_jury_final.pdf). Исходный текст —
 [Markdown](CyberSafe_report.md). Условия задачи — в
 [оригинальном PDF](Positive%20Technologies%20-%20task.pdf).
 
