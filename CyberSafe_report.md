@@ -18,21 +18,11 @@
 
 Работа делалась на своей плате в рамках учебного кейса. Для доказательства доступа хватило получить сырой образ, расшифровать его до корректного FAT12 и проверить файловую систему. ZIP `YourPrice` организаторы назвали пасхалкой, которая не относится к заданию. Он не открывался, не копировался и не распаковывался.
 
-### 0.1. Как учтены ТЗ и Q&A организаторов
+### 0.1. Условия исследования
 
-По ТЗ нужны разные по природе способы получить прошивку, пароль или доступ к хранилищу. Для каждого нужны класс, сложность, шаги и доказательство. В переданном участником конспекте Q&A организаторы отдельно уточнили:
+Язык исходной прошивки организаторы не раскрывают. В Q&A прозвучало, что компонентов на разных языках может быть пять и больше, поэтому выводы в отчёте опираются на машинный код и наблюдаемое поведение платы, а не на догадки об исходниках.
 
-- оценивается корневая уязвимость, а не число программ, которыми повторили один анализ;
-- теория без доказательства на выданной плате не считается выполненной атакой;
-- способы исследования не ограничены, но при порче второй платы не будет;
-- ИИ использовать можно, участник должен понимать и уметь объяснить написанное;
-- write-up можно сдать текстом, скринкастом или видео;
-- для финала достаточно обычной записи смартфоном со штатива;
-- язык исходной прошивки не раскрывается; в Q&A прозвучало, что компонентов на разных языках может быть пять и больше, поэтому выводы ниже основаны на машинном коде и поведении платы.
-
-Полный конспект и его происхождение сохранены в `evidence/organizer-qa-notes-20260927.md`.
-
-Так как экземпляр один, перед первой записью был сохранён полный дамп 2 МиБ и собран `evidence/restore-full-original.uf2`. Для M20 использовался только один сектор 4 КиБ, после демонстрации записан `restore-sector-005000.uf2`. ROM BOOTSEL находится внутри RP2040 и остаётся доступным даже при нерабочей основной прошивке. Опыты SWD, chip-off и fault injection в статусе C физически не выполнялись.
+Экземпляр платы один, замены при порче не будет. Перед первой записью был сохранён полный дамп 2 МиБ и собран `evidence/restore-full-original.uf2`. Для M20 использовался только один сектор 4 КиБ, после демонстрации исходное содержимое возвращено файлом `restore-sector-005000.uf2`. ROM BOOTSEL находится внутри RP2040 и остаётся доступным даже при нерабочей основной прошивке. Опыты SWD, chip-off и fault injection в статусе C физически не выполнялись.
 
 ## 1. Короткий итог
 
@@ -1036,7 +1026,6 @@ CPU вызывает `sleep_ms` только после совпавшей ци�
 | `evidence/live-pin-0000-20260927/` | M20 на плате: запись PIN 0000, `cafe:4000`, том `NO NAME`, запись восстановления |
 | `evidence/live-no-lockout-20260927/` | частичный M12: новый USB-сеанс после десяти неверных попыток и PIN 8170 |
 | `evidence/timing-camera-20260927/` | отрицательный M11: камера 240 FPS не дала различимого timing-сигнала |
-| `evidence/organizer-qa-notes-20260927.md` | переданный участником конспект разъяснений по оценке и формату |
 | `evidence/PROOF_INDEX.md` | единый индекс из 14 этапов: утверждение, статус, ограничение и SHA каждого пруфа |
 | `evidence/proof-matrix.json` | та же матрица доказательств в машиночитаемом виде: 12 корневых векторов и все связанные артефакты |
 | `evidence/METHOD_PROOF_MATRIX.md`, `method-proof-matrix.json` | отдельный аудит всех M01–M42: прямые файлы, статус и недостающая проверка |
@@ -1173,13 +1162,12 @@ restore-sector-005000.uf2 -> исходный PIN 8170
 ## 22. Источники
 
 1. Исходное ТЗ организаторов: `Positive Technologies - task.pdf`.
-2. Конспект Q&A организаторов, переданный участником: `evidence/organizer-qa-notes-20260927.md`.
-3. Официальный `picotool`, команды `save`, `load`, `verify`, `erase`: https://github.com/raspberrypi/picotool
-4. Официальный заголовок протокола PICOBOOT с `PC_READ`, `PC_WRITE`, `PC_EXEC`: https://github.com/raspberrypi/pico-sdk/blob/master/src/common/boot_picoboot_headers/include/boot/picoboot.h
-5. Реализация клиента PICOBOOT от Raspberry Pi: https://github.com/raspberrypi/picotool/blob/master/picoboot_connection/picoboot_connection.c
-6. Исходники ROM RP2040: https://github.com/raspberrypi/pico-bootrom-rp2040
-7. Документация Raspberry Pi Debug Probe и SWD: https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html
-8. Документация по микроконтроллерам RP2040 и внешней flash: https://www.raspberrypi.com/documentation/microcontrollers/microcontroller-chips.html
+2. Официальный `picotool`, команды `save`, `load`, `verify`, `erase`: https://github.com/raspberrypi/picotool
+3. Официальный заголовок протокола PICOBOOT с `PC_READ`, `PC_WRITE`, `PC_EXEC`: https://github.com/raspberrypi/pico-sdk/blob/master/src/common/boot_picoboot_headers/include/boot/picoboot.h
+4. Реализация клиента PICOBOOT от Raspberry Pi: https://github.com/raspberrypi/picotool/blob/master/picoboot_connection/picoboot_connection.c
+5. Исходники ROM RP2040: https://github.com/raspberrypi/pico-bootrom-rp2040
+6. Документация Raspberry Pi Debug Probe и SWD: https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html
+7. Документация по микроконтроллерам RP2040 и внешней flash: https://www.raspberrypi.com/documentation/microcontrollers/microcontroller-chips.html
 
 ## 23. Итог
 

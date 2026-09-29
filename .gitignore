@@ -4,3 +4,4 @@ __pycache__/
 firmware.o
 /firmware-full-disassembly.txt
 demo-run/
+.venv/
